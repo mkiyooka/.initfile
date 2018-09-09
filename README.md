@@ -1,6 +1,6 @@
 # ディレクトリ構成
 
-"""
+~~~text.txt
 ~/
 |-- .config/
 |   |-- _vimrc
@@ -17,4 +17,4 @@
 |-- .conda/ #  how to
 |-- .condarc #  how to
     |-- .condarc #  how to
-"""
+~~~
