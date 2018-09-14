@@ -1,0 +1,6 @@
+set guioptions=
+if filereadable(expand('~/.config/repos/github.com/tomasr/molokai/colors/molokai.vim'))
+  colorscheme molokai
+else
+  colorscheme slate
+endif

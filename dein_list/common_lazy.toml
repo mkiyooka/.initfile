@@ -1,0 +1,32 @@
+[[plugins]]
+repo  = 'cespare/vim-toml'
+on_ft = ['toml']
+
+[[plugins]]
+repo  = 'Vimjas/vim-python-pep8-indent'
+on_ft = ['python']
+
+#[[plugins]]
+#repo = 'w0rp/ale'
+#on_ft = ['python', 'c', 'cpp']
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+on_if = 1
+
+[[plugins]]
+repo = 'tsukkee/unite-tag'
+on_if = 1
+
+[[plugins]]
+repo = 'h1mesuke/unite-outline'
+on_if = 1
+
+[[plugins]]
+repo = 'tacroe/unite-mark'
+on_if = 1
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+on_if = 1
+
