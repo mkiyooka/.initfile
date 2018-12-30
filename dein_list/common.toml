@@ -8,6 +8,9 @@ repo = 'jacoborus/tender.vim'
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'Shougo/neocomplete.vim'
+
+[[plugins]]
 repo = 'Shougo/neosnippet.vim'
 
 [[plugins]]
@@ -28,3 +31,8 @@ repo = 'tpope/vim-fugitive'
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
 
+[[plugins]]
+repo = 'kien/ctrlp.vim'
+
+[[plugins]]
+repo = 'vim-scripts/mru.vim'
