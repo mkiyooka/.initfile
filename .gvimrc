@@ -8,7 +8,6 @@ if filereadable(s:rc_plug_mapping)
   execute 'source' s:rc_plug_mapping
 endif
 
-"source $HOME/initfiles/common.vim
 set guioptions=
 if filereadable(expand('~/.config/repos/github.com/tomasr/molokai/colors/molokai.vim'))
   colorscheme molokai

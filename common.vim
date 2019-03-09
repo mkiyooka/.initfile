@@ -1,12 +1,22 @@
-let s:gps = expand('$HOME/initfiles/get_plugins.vim')
+let s:gps = expand('$HOME/initfile/get_plugins.vim')
 if filereadable(s:gps)
   execute 'source' s:gps
 endif
 
-set makeprg=mingw32-make
 
-if !has('nvim')
-  set shell=cmd.exe
+if has('unit')
+  "for Unix
+  set shell=/bin/bash
+endif
+if has('mac')
+  "for Mac
+  set shell=/bin/bash
+endif
+if has('win32') || has('win64')
+  if !has('nvim')
+    set shell=cmd.exe
+    set makeprg=mingw32-make
+  endif
 endif
 
 "-------------------------------------------------------------------------------
