@@ -7,10 +7,12 @@ endif
 if has('unit')
   "for Unix
   set shell=/bin/bash
+  set makeprg=make
 endif
 if has('mac')
   "for Mac
   set shell=/bin/bash
+  set makeprg=make
 endif
 if has('win32') || has('win64')
   if !has('nvim')

@@ -1,20 +1,36 @@
-call plug#begin()
+if has('nvim')
+  let s:plug = expand('$HOME/.local/share/nvim/site/autoload/plug.vim')
+else
+  let s:plug = expand('$HOME/.vim/autoload/plug.vim')
+endif
 
-Plug 'tomasr/molokai'
-Plug 'jacoborus/tender.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'kien/ctrlp.vim'
-Plug 'vim-scripts/mru.vim'
-Plug 'editorconfig/editorconfig-vim'
+if filereadable(s:plug)
 
-Plug 'cespare/vim-toml', { 'for': ['toml'] }
-Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
-Plug 'w0rp/ale'
-Plug 'mattn/emmet-vim', { 'for': ['html'] }
+  call plug#begin()
+  Plug 'tomasr/molokai'
+  Plug 'jacoborus/tender.vim'
+  Plug 'scrooloose/nerdtree'
+  Plug 'itchyny/lightline.vim'
+  Plug 'tpope/vim-fugitive'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'kien/ctrlp.vim'
+  Plug 'vim-scripts/mru.vim'
+  Plug 'editorconfig/editorconfig-vim'
 
-call plug#end()
+  Plug 'cespare/vim-toml', { 'for': ['toml'] }
+  Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
+  Plug 'w0rp/ale'
+  Plug 'mattn/emmet-vim', { 'for': ['html'] }
+  call plug#end()
 
-colorscheme molokai
+endif
+
+if has('nvim')
+  let s:molokai = expand('$XDG_CONFIG_HOME/nvim/plugged/molokai/colors/molokai.vim')
+else
+  let s:molokai = expand('$HOME/.vim/plugged/molokai/colors/molokai.vim')
+endif
+
+if filereadable(s:molokai)
+  colorscheme molokai
+endif
