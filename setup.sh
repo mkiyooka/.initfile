@@ -16,3 +16,4 @@ mkdir -p $XDG_DATA_HOME
 mkdir -p $XDG_RUNTIME_DIR
 mkdir -p $XDG_CONFIG_HOME/nvim
 ln -fs $HOME/initfile/init.vim $XDG_CONFIG_HOME/nvim/init.vim
+ln -fs $HOME/initfile/.bashrc $HOME/.bashrc

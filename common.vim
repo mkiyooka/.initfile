@@ -35,7 +35,7 @@ set cmdheight=1         "Command line height
 set ruler               "show ruler (line number:column number)
 set showcmd             "Show (partial) command in the last line of the screen.
 set list                "Show <tab>, <space>, <eol>, etc.
-set listchars=eol:<,tab:I-,space:.,trail:.,extends:>,precedes:<
+set listchars=eol:<,tab:I-,nbsp:.,trail:.,extends:>,precedes:<
 set wrap                "Display long line wrapped.
 set tabstop=4           "Number of spaces that a <Tab> in the file counts for.
 set shiftwidth=4        "Number of spaces to use for each step of (auto)indent.
