@@ -22,6 +22,7 @@ if filereadable(s:plug)
   Plug 'w0rp/ale'
   Plug 'mattn/emmet-vim', { 'for': ['html'] }
   Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
+  Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
   call plug#end()
 
 endif
