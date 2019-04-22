@@ -21,6 +21,7 @@ if filereadable(s:plug)
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
   Plug 'w0rp/ale'
   Plug 'mattn/emmet-vim', { 'for': ['html'] }
+  Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
   call plug#end()
 
 endif
