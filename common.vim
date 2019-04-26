@@ -66,6 +66,10 @@ set smartcase           "Case sensitive search with patterns include upper chara
 set incsearch           "Incremental searching
 set hlsearch            "Highlight the matching patterns
 set wrapscan            "Searches wrap around the end of the file.
+set encoding=utf-8
+set termencoding=
+set fileencoding=utf-8
+set fileencodings=utf-8,iso-2022-jp,euc-jp,cp932
 
 "-------------------------------------------------------------------------------
 "Change cursor color with IME mode.

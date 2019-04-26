@@ -24,7 +24,6 @@ if filereadable(s:plug)
   Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
   Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
   call plug#end()
-
 endif
 
 if has('nvim')
