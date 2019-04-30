@@ -3,7 +3,6 @@ if [ $UID -eq 0 ]; then
     PS1="[\[\033[31m\]\u@\h\[\033[00m\] \[\033[32m\]\W\[\033[00m\]]> "
 else
     PS1="[\[\033[36m\]\u@\h\[\033[00m\] \[\033[32m\]\W\[\033[00m\]]\\$ "
-    #PS1="[\u@\h \W]\\$ "
 fi
 
 export GRADLE_HOME=$(brew info gradle | grep /usr/local/Cellar/gradle | awk '{print $1}')
@@ -14,6 +13,9 @@ case "${OSTYPE}" in darwin*)
   alias ls='ls -FG'
   alias ll='ls -alFG'
   alias la="ls -laG"
+  if [ -f `brew --prefix`/etc/bash_completion ]; then
+    . `brew --prefix`/etc/bash_completion
+  fi
   ;;
 linux*)
   alias ls='ls --color'
@@ -32,6 +34,7 @@ linux*)
 esac
 
 alias e='emacs'
+export MANPAGER="/bin/sh -c \"col -b -x|vim -R -c 'set ft=man nolist nonu noma' -\""
 
 export JAVA_HOME=`/usr/libexec/java_home -v 1.8` #java8が使いたいとき
 
@@ -46,3 +49,8 @@ alias dgjd='docker run --rm -v "$PWD":/home/gradle/project -w /home/gradle/proje
 
 alias dtom='docker container run --rm --name tomcat-example -p 80:8080 -v "$PWD:/usr/local/tomcat/webapps" tomcat'
 alias dubu='docker run -it --rm -v "$PWD:/root" -w "/root" ubuntu:18.04'
+
+function _compreply_ssh() {
+  COMPREPLY=(`cat ~/.ssh/config* | grep -e '^Host' | cut -d " " -f 2 | grep -E "$2"`)
+}
+complete -F _compreply_ssh ssh
