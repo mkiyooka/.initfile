@@ -18,11 +18,12 @@ if filereadable(s:plug)
   Plug 'editorconfig/editorconfig-vim'
 
   Plug 'cespare/vim-toml', { 'for': ['toml'] }
-  Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
-  Plug 'w0rp/ale'
   Plug 'mattn/emmet-vim', { 'for': ['html'] }
   Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
   Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
+  Plug 'tpope/vim-markdown', {'for': ['markdown'] }
+  Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
+  Plug 'w0rp/ale'
   call plug#end()
 endif
 
@@ -35,3 +36,4 @@ endif
 if filereadable(s:molokai)
   colorscheme molokai
 endif
+let g:markdown_fenced_languages = ['html', 'css', 'js=javascript', 'c', 'cpp', 'python', 'ruby', 'vim', 'sh', 'bash=sh', 'toml', 'yaml', 'json', 'nginx', 'Dockerfile']
