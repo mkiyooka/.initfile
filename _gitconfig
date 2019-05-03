@@ -1,0 +1,24 @@
+[user]
+	name = Masahiro KIYOOKA
+	email = kiyookamasa@gmail.com
+[credential]
+	helper = manager
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[gui]
+	encoding = utf-8
+[alias]
+	logs = log  --graph --date=short --branches --pretty=format:'%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]'
+	logl = log --graph --date=short --branches --pretty=format:'%C(green)%h %C(white)[%cd] %s %C(red)[%an]%n%C(yellow)%d%n%w(0,4,4)%b'
+[color]
+	ui = true
+[core]
+	edicor = vim
+	autocrlf = input
+[merge]
+	ff = false
+[pull]
+	ff = only
