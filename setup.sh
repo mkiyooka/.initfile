@@ -21,4 +21,4 @@ ln -fs $SCRIPT_DIR/init.vim $XDG_CONFIG_HOME/nvim/init.vim
 ln -fs $SCRIPT_DIR/.bash_profile $HOME/.bash_profile
 ln -fs $SCRIPT_DIR/.bashrc $HOME/.bashrc
 ln -fs $SCRIPT_DIR/.screenrc $HOME/.screenrc
-ln -fs $SCRIPT_DIR/_gitconfig $HOME/.gitconfig
+ln -fs $SCRIPT_DIR/gitconfig $HOME/.gitconfig
