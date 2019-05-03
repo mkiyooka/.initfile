@@ -1,3 +1,7 @@
+if [ -z "$PS1" ]; then
+    return
+fi
+
 # default:cyan / root:red
 if [ $UID -eq 0 ]; then
     PS1="[\[\033[31m\]\u@\h\[\033[00m\] \[\033[32m\]\W\[\033[00m\]]> "
@@ -37,7 +41,7 @@ case "${OSTYPE}" in
         ;;
 esac
 
-which col; RETURN_CODE=$?
+which col > /dev/null; RETURN_CODE=$?
 if [ -e /bin/sh ] && [ $RETURN_CODE = 0 ]; then
     export MANPAGER="/bin/sh -c \"col -b -x|vim -R -c 'set ft=man nolist nonu noma' -\""
 fi
