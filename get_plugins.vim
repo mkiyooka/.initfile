@@ -1,11 +1,14 @@
 if has('nvim')
   let s:plug = expand('$HOME/.local/share/nvim/site/autoload/plug.vim')
 else
-  let s:plug = expand('$HOME/.vim/autoload/plug.vim')
+  if has("win32") || has("win64")
+    let s:plug = expand('$HOME/vimfiles/autoload/plug.vim')
+  else
+    let s:plug = expand('$HOME/.vim/autoload/plug.vim')
+  endif
 endif
 
 if filereadable(s:plug)
-
   call plug#begin()
   Plug 'tomasr/molokai'
   Plug 'jacoborus/tender.vim'
@@ -31,10 +34,15 @@ endif
 if has('nvim')
   let s:molokai = expand('$XDG_CONFIG_HOME/nvim/plugged/molokai/colors/molokai.vim')
 else
-  let s:molokai = expand('$HOME/.vim/plugged/molokai/colors/molokai.vim')
+  if has("win32") || has("win64")
+    let s:molokai = expand('$HOME/vimfiles/plugged/molokai/colors/molokai.vim')
+  else
+    let s:molokai = expand('$HOME/.vim/plugged/molokai/colors/molokai.vim')
+  endif
 endif
 
-if filereadable(s:molokai)
+if filereadable(s:plug) && filereadable(s:molokai)
   colorscheme molokai
 endif
+
 let g:markdown_fenced_languages = ['html', 'css', 'js=javascript', 'c', 'cpp', 'python', 'ruby', 'vim', 'sh', 'bash=sh', 'toml', 'yaml', 'json', 'nginx', 'Dockerfile']
