@@ -28,7 +28,9 @@ case "${OSTYPE}" in
         alias ls='ls --color'
         alias ll='ls -l --color'
         alias la='ls -la --color'
-        source /etc/profile.d/bash_completion.sh
+        if [ -f /etc/profile.d/bash_completion.sh ]; then
+            source /etc/profile.d/bash_completion.sh
+        fi
         if [ -e /usr/local/bin/vim ]; then
             alias vim='/usr/local/bin/vim'
             alias vi='/usr/local/bin/vi'
