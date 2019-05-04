@@ -33,6 +33,10 @@ case "${OSTYPE}" in
             alias vim='/usr/local/bin/vim'
             alias vi='/usr/local/bin/vi'
         fi
+        if [ -e $HOME/.rbenv/bin ]; then
+            export PATH=$PATH:$HOME/.rbenv/bin:$PATH
+            eval "$(rbenv init -)"
+        fi
         ;;
     msys*)
         alias ls='ls --color'
@@ -50,3 +54,4 @@ function _compreply_ssh() {
   COMPREPLY=(`cat ~/.ssh/config* | grep -e '^Host' | cut -d " " -f 2 | grep -E "$2"`)
 }
 complete -F _compreply_ssh ssh
+
