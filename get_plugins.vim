@@ -24,6 +24,7 @@ if filereadable(s:plug)
   Plug 'tpope/vim-markdown', {'for': ['markdown'] }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
   Plug 'w0rp/ale'
+  Plug 'vim-scripts/sudo.vim'
   call plug#end()
 endif
 
