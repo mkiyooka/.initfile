@@ -35,7 +35,7 @@ set cmdheight=1         "Command line height
 set ruler               "show ruler (line number:column number)
 set showcmd             "Show (partial) command in the last line of the screen.
 set list                "Show <tab>, <space>, <eol>, etc.
-set listchars=eol:<,tab:I-,space:.,trail:.,extends:>,precedes:<
+set listchars=eol:<,tab:I-,nbsp:.,trail:.,extends:>,precedes:<
 set wrap                "Display long line wrapped.
 set tabstop=4           "Number of spaces that a <Tab> in the file counts for.
 set shiftwidth=4        "Number of spaces to use for each step of (auto)indent.
@@ -66,6 +66,10 @@ set smartcase           "Case sensitive search with patterns include upper chara
 set incsearch           "Incremental searching
 set hlsearch            "Highlight the matching patterns
 set wrapscan            "Searches wrap around the end of the file.
+set encoding=utf-8
+set termencoding=
+set fileencoding=utf-8
+set fileencodings=utf-8,iso-2022-jp,euc-jp,cp932
 
 "-------------------------------------------------------------------------------
 "Change cursor color with IME mode.

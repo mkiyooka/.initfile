@@ -1,7 +1,6 @@
+#!/bin/sh
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-ln -fs $HOME/initfile/.vimrc ~/.vimrc
-ln -fs $HOME/initfile/.gvimrc ~/.gvimrc
 
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
@@ -15,4 +14,9 @@ mkdir -p $XDG_CACHE_HOME
 mkdir -p $XDG_DATA_HOME
 mkdir -p $XDG_RUNTIME_DIR
 mkdir -p $XDG_CONFIG_HOME/nvim
-ln -fs $HOME/initfile/init.vim $XDG_CONFIG_HOME/nvim/init.vim
+
+ln -fs $PWD/init.vim $XDG_CONFIG_HOME/nvim/init.vim
+
+for BASE in *rc *profile gitconfig; do
+    ln -fsv $PWD/$BASE ~/.$BASE
+done

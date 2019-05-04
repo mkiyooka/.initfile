@@ -12,8 +12,3 @@ let s:rc_plug_mapping = expand('$HOME/initfile/plug_mapping.vim')
 if filereadable(s:rc_plug_mapping)
   execute 'source' s:rc_plug_mapping
 endif
-
-set lines=40
-set columns=100
-
-set guioptions=
