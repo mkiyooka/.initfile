@@ -33,7 +33,7 @@ case "${OSTYPE}" in
         fi
         if [ -e /usr/local/bin/vim ]; then
             alias vim='/usr/local/bin/vim'
-            alias vi='/usr/local/bin/vi'
+            alias vi='/usr/local/bin/vim'
         fi
         if [ -e $HOME/.rbenv/bin ]; then
             export PATH=$PATH:$HOME/.rbenv/bin:$PATH
