@@ -47,7 +47,7 @@ case "${OSTYPE}" in
         ;;
 esac
 
-which col > /dev/null; RETURN_CODE=$?
+which col &> /dev/null; RETURN_CODE=$?
 if [ -e /bin/sh ] && [ $RETURN_CODE = 0 ]; then
     export MANPAGER="/bin/sh -c \"col -b -x|vim -R -c 'set ft=man nolist nonu noma' -\""
 fi
