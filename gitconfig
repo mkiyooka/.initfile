@@ -11,14 +11,17 @@
 [gui]
 	encoding = utf-8
 [alias]
-	logs = log  --graph --date=short --branches --pretty=format:'%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]'
+	logs = log --graph --date=short --branches --pretty=format:'%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]'
 	logl = log --graph --date=short --branches --pretty=format:'%C(green)%h %C(white)[%cd] %s %C(red)[%an]%n%C(yellow)%d%n%w(0,4,4)%b'
 [color]
 	ui = true
 [core]
 	edicor = vim
-	autocrlf = input
+	autocrlf = false
 [merge]
 	ff = false
 [pull]
 	ff = only
+[http]
+	postBuffer = 524288000
+
