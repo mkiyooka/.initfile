@@ -81,3 +81,4 @@ if has('multi_byte_ime') || has('xim')
   set imsearch=0 "Default IME mode on search mode
 endif
 
+set guifont=Migu_1M:h12:cSHIFTJIS:qDRAFT

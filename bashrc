@@ -33,7 +33,7 @@ case "${OSTYPE}" in
         fi
         if [ -e /usr/local/bin/vim ]; then
             alias vim='/usr/local/bin/vim'
-            alias vi='/usr/local/bin/vi'
+            alias vi='/usr/local/bin/vim'
         fi
         if [ -e $HOME/.rbenv/bin ]; then
             export PATH=$PATH:$HOME/.rbenv/bin:$PATH
@@ -47,7 +47,7 @@ case "${OSTYPE}" in
         ;;
 esac
 
-which col > /dev/null; RETURN_CODE=$?
+which col &> /dev/null; RETURN_CODE=$?
 if [ -e /bin/sh ] && [ $RETURN_CODE = 0 ]; then
     export MANPAGER="/bin/sh -c \"col -b -x|vim -R -c 'set ft=man nolist nonu noma' -\""
 fi
