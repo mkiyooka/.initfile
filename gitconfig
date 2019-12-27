@@ -17,7 +17,7 @@
 	ui = true
 [core]
 	edicor = vim
-	autocrlf = input
+	autocrlf = false
 [merge]
 	ff = false
 [pull]
