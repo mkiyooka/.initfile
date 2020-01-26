@@ -28,6 +28,7 @@ set noerrorbells "disable beep
 set nobackup
 set noundofile
 
+set scrolloff=0         "Number of lines to display above and below the cursor line
 set number              "Show line number
 set title               "Show title
 set laststatus=2        "Always display the status line.
