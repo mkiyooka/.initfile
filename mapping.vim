@@ -64,8 +64,18 @@ endfunction
 "  通常作業用スタイル
 " ------------------------------------------------------------
 function! DefaultStyle()
-  set guifont=Migu_1M:h11:cSHIFTJIS
-  set guifontwide=Migu_1M:h11:cSHIFTJIS
+  if has('unit')
+    set guifont=migu-1m-regular:h11
+    set guifontwide=migu-1m-regular:h11
+  endif
+  if has('mac')
+    set guifont=migu-1m-regular:h16
+    set guifontwide=migu-1m-regular:h16
+  endif
+  if has('win32') || has('win64')
+    set guifont=Migu_1M:h11:cSHIFTJIS
+    set guifontwide=Migu_1M:h11:cSHIFTJIS
+  endif
   "set linespace=3
   set antialias
   set columns=110
@@ -78,8 +88,18 @@ command! DefaultStyle :call DefaultStyle()
 "  デモ用スタイル
 " ------------------------------------------------------------
 function! DemoStyle()
-  set guifont=Migu_1M:h18:cSHIFTJIS
-  set guifontwide=Migu_1M:h18:cSHIFTJIS
+  if has('unit')
+    set guifont=migu-1m-regular:h18
+    set guifontwide=migu-1m-regular:h18
+  endif
+  if has('mac')
+    set guifont=migu-1m-regular:h24
+    set guifontwide=migu-1m-regular:h24
+  endif
+  if has('win32') || has('win64')
+    set guifont=Migu_1M:h18:cSHIFTJIS
+    set guifontwide=Migu_1M:h18:cSHIFTJIS
+  endif
   set columns=100
   set lines=30
   let s:fDemoStyle = 1
