@@ -46,3 +46,4 @@ if filereadable(s:plug) && filereadable(s:molokai)
 endif
 
 let g:markdown_fenced_languages = ['html', 'css', 'js=javascript', 'c', 'cpp', 'python', 'ruby', 'vim', 'sh', 'bash=sh', 'toml', 'yaml', 'json', 'nginx', 'Dockerfile']
+let g:markdown_syntax_conceal = 0
