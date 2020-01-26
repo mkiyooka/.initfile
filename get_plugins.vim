@@ -2,7 +2,7 @@ if has('nvim')
   let s:plug = expand('$HOME/.local/share/nvim/site/autoload/plug.vim')
 else
   if has("win32") || has("win64")
-    let s:plug = expand('$HOME/vimfiles/autoload/plug.vim')
+    let s:plug = expand('$HOME/.vim/autoload/plug.vim')
   else
     let s:plug = expand('$HOME/.vim/autoload/plug.vim')
   endif
@@ -35,7 +35,7 @@ if has('nvim')
   let s:molokai = expand('$XDG_CONFIG_HOME/nvim/plugged/molokai/colors/molokai.vim')
 else
   if has("win32") || has("win64")
-    let s:molokai = expand('$HOME/vimfiles/plugged/molokai/colors/molokai.vim')
+    let s:molokai = expand('$HOME/.vim/plugged/molokai/colors/molokai.vim')
   else
     let s:molokai = expand('$HOME/.vim/plugged/molokai/colors/molokai.vim')
   endif
