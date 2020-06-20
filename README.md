@@ -3,8 +3,8 @@
 ``` text
 ~/
  |-- .bashrc
- |-- .vimrc -> /Users/mkiyo/initfile/.vimrc
- |-- .gvimrc -> /Users/mkiyo/initfile/.gvimrc
+ |-- .vimrc -> /Users/mkiyo/.initfile/.vimrc
+ |-- .gvimrc -> /Users/mkiyo/.initfile/.gvimrc
  |-- initfile/
  |   |-- README.md
  |   |-- common.vim
@@ -16,6 +16,6 @@
  |   |-- setup.sh
  |-- .vim/autoload/
  |-- .vim/plugged/
- |-- .config/nvim/init.vim -> ~/initfile/init.vim
+ |-- .config/nvim/init.vim -> ~/.initfile/init.vim
  |-- .config/nvim/plugged/
 ```

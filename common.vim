@@ -2,7 +2,7 @@ if has('win32') || has('win64')
   set runtimepath^=$HOME/.vim
 endif
 
-let s:gps = expand('$HOME/initfile/get_plugins.vim')
+let s:gps = expand('$HOME/.initfile/get_plugins.vim')
 if filereadable(s:gps)
   execute 'source' s:gps
 endif
