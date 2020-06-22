@@ -36,8 +36,11 @@ case "${OSTYPE}" in
             alias vi='/usr/local/bin/vim'
         fi
         if [ -e $HOME/.rbenv/bin ]; then
-            export PATH=$PATH:$HOME/.rbenv/bin:$PATH
+            export PATH=$HOME/.rbenv/bin:$PATH
             eval "$(rbenv init -)"
+        fi
+        if [ -e $HOME/.cargo/bin ]; then
+            export PATH=$HOME/.cargo/bin:$PATH
         fi
         ;;
     msys*)
