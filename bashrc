@@ -35,12 +35,26 @@ case "${OSTYPE}" in
             alias vim='/usr/local/bin/vim'
             alias vi='/usr/local/bin/vim'
         fi
+        # for Ruby
         if [ -e $HOME/.rbenv/bin ]; then
             export PATH=$HOME/.rbenv/bin:$PATH
             eval "$(rbenv init -)"
         fi
+        # for Rust
         if [ -e $HOME/.cargo/bin ]; then
             export PATH=$HOME/.cargo/bin:$PATH
+        fi
+        # for Golang
+        if [ -e $HOME/.go/bin ]; then
+            export PATH=$HOME/.go/bin:$PATH
+        fi
+        # for self-built gcc/g++
+        export LD_LIBRARY_PATH=/usr/lib:/usr/lib64
+        if [ -e /usr/local/lib ]; then
+            export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
+        fi
+        if [ -e /usr/local/lib64 ]; then
+            export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
         fi
         ;;
     msys*)
