@@ -60,7 +60,7 @@ set formatoptions+=mMj
 set virtualedit+=block  "Free cursor on visual block mode
 set whichwrap=b,s,[,],<,> "the cursor left/right behave on the first/last character in the line.
 set wildmenu            "Enhance autocomplete in command line.
-set shellslash          "Use '/' as a path separator in Windows.
+"set shellslash          "Use '/' as a path separator in Windows.
 
 set nrformats-=octal    "<C-a> and <C-x> will consider numbers that start with 0 like "007" to be octal.
 set timeoutlen=2000     "Time in ms to wait for a key-bind sequence to complete.
