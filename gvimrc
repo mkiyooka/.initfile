@@ -21,4 +21,10 @@ endif
 set lines=40
 set columns=100
 
+" GUI menu bar is not present
 set guioptions=
+
+" encode setting for menu
+source $VIMRUNTIME/delmenu.vim
+set langmenu=ja_jp.utf-8
+source $VIMRUNTIME/menu.vim
