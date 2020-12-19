@@ -22,7 +22,6 @@ case "${OSTYPE}" in
         export JAVA_HOME=`/usr/libexec/java_home -v 1.8` #java8が使いたいとき
         #export GRADLE_HOME=$(brew info gradle | grep /usr/local/Cellar/gradle | awk '{print $1}')
         export GRADLE_HOME=/usr/local/Cellar/gradle/5.4
-        export PATH=$HOME/.nodebrew/current/bin:$PATH
         ;;
     linux*)
         alias ls='ls --color'
@@ -57,3 +56,5 @@ function _compreply_ssh() {
 }
 complete -F _compreply_ssh ssh
 
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
