@@ -2,8 +2,8 @@
 " Display
 " -----
 function! DefaultStyle()
-  set guifont=Migu_1M:h11:cSHIFTJIS
-  set guifontwide=Migu_1M:h11:cSHIFTJIS
+  set guifont=Migu_1M:h11
+  set guifontwide=Migu_1M:h11
   set antialias
   set columns=80
   set lines=35
@@ -15,8 +15,8 @@ endfunction
 " Projector
 " -----
 function! DemoStyle()
-  set guifont=Migu_1M:h18:cSHIFTJIS
-  set guifontwide=Migu_1M:h18:cSHIFTJIS
+  set guifont=Migu_1M:h18
+  set guifontwide=Migu_1M:h18
   set antialias
   set columns=100
   set lines=30
