@@ -13,20 +13,30 @@ if filereadable(s:plug)
   Plug 'tomasr/molokai'
   Plug 'jacoborus/tender.vim'
   Plug 'scrooloose/nerdtree'
-  Plug 'itchyny/lightline.vim'
+  Plug 'itchyny/lightline.vim' " Status line styler
   Plug 'tpope/vim-fugitive'
   Plug 'airblade/vim-gitgutter'
   Plug 'kien/ctrlp.vim'
   Plug 'vim-scripts/mru.vim'
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'majutsushi/tagbar'
 
-  Plug 'cespare/vim-toml', { 'for': ['toml'] }
+  Plug 'markonm/traces.vim'
+  Plug 'skanehira/translate.vim'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf.vim'
+  Plug 'mattn/vim-maketable' "Make markdown table
+  Plug 'junegunn/vim-easy-align'
+
+  Plug 'sheerun/vim-polyglot' " Language pack
+  "Plug 'cespare/vim-toml', { 'for': ['toml'] }
   Plug 'mattn/emmet-vim', { 'for': ['html'] }
-  Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
-  Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
+  "Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
+  "Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
   Plug 'tpope/vim-markdown', {'for': ['markdown'] }
+  Plug 'previm/previm', {'for': ['markdown'] }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
-  Plug 'w0rp/ale'
+  Plug 'w0rp/ale' "Asynchronous Lint Engine
   Plug 'vim-scripts/sudo.vim'
   call plug#end()
 endif
