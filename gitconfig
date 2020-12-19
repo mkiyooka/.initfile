@@ -24,3 +24,5 @@
 	ff = only
 [http]
 	postBuffer = 524288000
+
+# vim: ft=gitconfig

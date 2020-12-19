@@ -1,4 +1,8 @@
-let s:gps = expand('$HOME/initfile/get_plugins.vim')
+if has('win32') || has('win64')
+  set runtimepath^=$HOME/.vim
+endif
+
+let s:gps = expand('$HOME/.initfile/get_plugins.vim')
 if filereadable(s:gps)
   execute 'source' s:gps
 endif
@@ -28,6 +32,7 @@ set noerrorbells "disable beep
 set nobackup
 set noundofile
 
+set scrolloff=0         "Number of lines to display above and below the cursor line
 set number              "Show line number
 set title               "Show title
 set laststatus=2        "Always display the status line.
@@ -55,7 +60,7 @@ set formatoptions+=mMj
 set virtualedit+=block  "Free cursor on visual block mode
 set whichwrap=b,s,[,],<,> "the cursor left/right behave on the first/last character in the line.
 set wildmenu            "Enhance autocomplete in command line.
-set shellslash          "Use '/' as a path separator in Windows.
+"set shellslash          "Use '/' as a path separator in Windows.
 
 set nrformats-=octal    "<C-a> and <C-x> will consider numbers that start with 0 like "007" to be octal.
 set timeoutlen=2000     "Time in ms to wait for a key-bind sequence to complete.
