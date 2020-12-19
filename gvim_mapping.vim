@@ -38,3 +38,4 @@ endfunction
 
 nnoremap <C-w><space> <ESC>:<C-u>ToggleDisplayStyle<CR>
 highlight SpecialKey    guifg=#333333 guibg=#181D1E gui=italic
+

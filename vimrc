@@ -8,7 +8,7 @@ if filereadable(s:rc_mapping)
   execute 'source' s:rc_mapping
 endif
 
-let s:rc_plug_mapping = expand('$HOME/.initfile/.plug_mapping.vim')
+let s:rc_plug_mapping = expand('$HOME/.initfile/plug_mapping.vim')
 if filereadable(s:rc_plug_mapping)
   execute 'source' s:rc_plug_mapping
 endif
