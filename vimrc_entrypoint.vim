@@ -28,3 +28,6 @@ set guioptions=
 source $VIMRUNTIME/delmenu.vim
 set langmenu=ja_jp.utf-8
 source $VIMRUNTIME/menu.vim
+
+set conceallevel=0
+set concealcursor=n
