@@ -32,6 +32,7 @@ set noerrorbells "disable beep
 set nobackup
 set noundofile
 
+set nocompatible
 set scrolloff=0         "Number of lines to display above and below the cursor line
 set number              "Show line number
 set title               "Show title
