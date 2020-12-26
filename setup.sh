@@ -11,3 +11,6 @@ for BASE in \
 	gitconfig; do
     ln -fsv $PWD/$BASE ~/.$BASE
 done
+
+vim -c PlugInstall -c q -c q
+

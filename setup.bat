@@ -9,3 +9,5 @@ xcopy /E %HOME%\initfile\gvimrc       %HOME%\.gvimrc
 xcopy /E %HOME%\initfile\screenrc     %HOME%\.screenrc
 xcopy /E %HOME%\initfile\gitconfig    %HOME%\.gitconfig
 
+vim -c PlugInstall -c q -c q
+
