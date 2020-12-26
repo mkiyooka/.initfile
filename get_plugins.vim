@@ -44,6 +44,13 @@ if filereadable(s:plug)
   Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
   Plug 'cespare/vim-toml', { 'for': ['toml'] }
+  Plug 'vimwiki/vimwiki'
+  let g:vimwiki_list = [{
+        \ 'path': '~/vimwiki',
+        \ 'syntax': 'markdown',
+        \ 'ext': '.md',
+        \ }]
+  let g:vimwiki_menu = ''
 
   "Programming support
   Plug 'editorconfig/editorconfig-vim' "Help maintain consistent coding styles
@@ -67,9 +74,38 @@ elseif filereadable(s:plug) && filereadable(s:molokai)
   colorscheme molokai
 elseif filereadable(s:plug) && filereadable(s:tender)
   colorscheme tender
-else
-  colorscheme desert
 endif
 
-let g:markdown_fenced_languages = ['html', 'css', 'js=javascript', 'c', 'cpp', 'python', 'ruby', 'vim', 'sh', 'bash=sh', 'toml', 'yaml', 'json', 'nginx', 'Dockerfile']
-let g:markdown_syntax_conceal = 0
+let g:vim_markdown_fenced_languages = ['html', 'css', 'js=javascript', 'c', 'cpp', 'python', 'ruby', 'vim', 'sh', 'bash=sh', 'toml', 'yaml', 'json', 'nginx', 'Dockerfile']
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_auto_extension_ext = 'md'
+
+" markdown extention
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
+let g:vim_markdown_strikethrough = 1
+
+let g:vimwiki_conceallevel = 0
+let g:vimwiki_conceal_code_blocks = 0
+
+function! ToggleVimwikiSyntax()
+  if ( &filetype == 'markdown')
+    set filetype=vimwiki
+  elseif ( &filetype == 'vimwiki' )
+    set filetype=markdown
+  endif
+endfunction
+command! -nargs=* -range ToggleVimwikiSyntax call ToggleVimwikiSyntax()
+nmap <Leader>s :<c-u>call ToggleVimwikiSyntax()<CR>
+
+nmap <Leader>wf <Plug>VimwikiFollowLink
+vmap <Leader>wf <Plug>VimwikiFollowLinkVisual
+nmap <Leader>wn <Plug>VimwikiNormalizeLink
+vmap <Leader>wn <Plug>VimwikiNormalizeLinkVisual
+
