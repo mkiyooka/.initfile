@@ -116,6 +116,16 @@ command! -nargs=* -range ToggleVimwikiSyntax call ToggleVimwikiSyntax()
 nmap <Leader>s :<c-u>call ToggleVimwikiSyntax()<CR>
 
 nmap <Leader>wf <Plug>VimwikiFollowLink
+nmap <Leader>ws <Plug>VimwikiSplitLink
+nmap <Leader>wv <Plug>VimwikiVSplitLink
 nmap <Leader>wn <Plug>VimwikiNormalizeLink
 vmap <Leader>wn <Plug>VimwikiNormalizeLinkVisual
+nmap <Leader>wb <Plug>VimwikiGoBackLink
+nmap <Leader>wd <Plug>VimwikiDeleteFile
+nmap <Leader>wr <Plug>VimwikiRenameFile
+
+nmap <Leader>wn <Plug>VimwikiNextLink
+nmap <Leader>wn <Plug>VimwikiNextTask
+nmap <Leader>wp <Plug>VimwikiPrevLink
+nmap <Leader>wp <Plug>VimwikiPrevTask
 
