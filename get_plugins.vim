@@ -45,12 +45,6 @@ if filereadable(s:plug)
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
   Plug 'cespare/vim-toml', { 'for': ['toml'] }
   Plug 'vimwiki/vimwiki'
-  let g:vimwiki_list = [{
-        \ 'path': '~/vimwiki',
-        \ 'syntax': 'markdown',
-        \ 'ext': '.md',
-        \ }]
-  let g:vimwiki_menu = ''
 
   "Programming support
   Plug 'editorconfig/editorconfig-vim' "Help maintain consistent coding styles
@@ -76,6 +70,7 @@ elseif filereadable(s:plug) && filereadable(s:tender)
   colorscheme tender
 endif
 
+" ===== for markdown =====
 let g:vim_markdown_fenced_languages = ['html', 'css', 'js=javascript', 'c', 'cpp', 'python', 'ruby', 'vim', 'sh', 'bash=sh', 'toml', 'yaml', 'json', 'nginx', 'Dockerfile']
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_auto_insert_bullets = 0
@@ -83,7 +78,7 @@ let g:vim_markdown_new_list_item_indent = 0
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_auto_extension_ext = 'md'
 
-" markdown extention
+" ----- for markdown . markdown extention -----
 let g:tex_conceal = ""
 let g:vim_markdown_math = 1
 let g:vim_markdown_frontmatter = 1
@@ -91,8 +86,24 @@ let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_json_frontmatter = 1
 let g:vim_markdown_strikethrough = 1
 
+" ----- for vimwiki -----
 let g:vimwiki_conceallevel = 0
 let g:vimwiki_conceal_code_blocks = 0
+let g:vimwiki_list = [{
+      \ 'path': '~/vimwiki',
+      \ 'syntax': 'markdown',
+      \ 'ext': '.md',
+      \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp'},
+      \ 'links_space_char': '-',
+      \ }]
+let g:vimwiki_menu = ''
+let g:vimwiki_diary_months = {
+    \ 1: '1 January', 2: '2 February', 3: '3 March',
+    \ 4: '4 April', 5: '5 May', 6: '6 June',
+    \ 7: '7 July', 8: '8 August', 9: '9 September',
+    \ 10: '10 October', 11: '11 November', 12: '12 December'
+    \ }
+let g:vimwiki_auto_header = 1
 
 function! ToggleVimwikiSyntax()
   if ( &filetype == 'markdown')
@@ -105,7 +116,6 @@ command! -nargs=* -range ToggleVimwikiSyntax call ToggleVimwikiSyntax()
 nmap <Leader>s :<c-u>call ToggleVimwikiSyntax()<CR>
 
 nmap <Leader>wf <Plug>VimwikiFollowLink
-vmap <Leader>wf <Plug>VimwikiFollowLinkVisual
 nmap <Leader>wn <Plug>VimwikiNormalizeLink
 vmap <Leader>wn <Plug>VimwikiNormalizeLinkVisual
 
