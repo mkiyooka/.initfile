@@ -92,7 +92,7 @@ let g:vimwiki_conceal_code_blocks = 0
 let g:vimwiki_list = [{
       \ 'path': '~/vimwiki',
       \ 'syntax': 'markdown',
-      \ 'ext': '.md',
+      \ 'ext': '.wikimd',
       \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp'},
       \ 'links_space_char': '-',
       \ }]
