@@ -129,3 +129,16 @@ nmap <Leader>wn <Plug>VimwikiNextTask
 nmap <Leader>wp <Plug>VimwikiPrevLink
 nmap <Leader>wp <Plug>VimwikiPrevTask
 
+" ----- for previm -----
+if has('unit')
+elseif has('mac')
+  let g:previm_open_cmd = 'open -a Google\ Chrome'
+elseif has('win32') || has('win64')
+  let g:previm_open_cmd = 'chrome'
+endif
+augroup PrevimSettings
+    autocmd!
+    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
+    autocmd BufNewFile,BufRead *.{wiki,wikimd} set filetype=vimwiki
+augroup END
+
