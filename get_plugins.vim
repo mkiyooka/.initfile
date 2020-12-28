@@ -44,7 +44,7 @@ if filereadable(s:plug)
   Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
   Plug 'cespare/vim-toml', { 'for': ['toml'] }
-  Plug 'vimwiki/vimwiki'
+  Plug 'lervag/wiki.vim'
 
   "Programming support
   Plug 'editorconfig/editorconfig-vim' "Help maintain consistent coding styles
@@ -71,7 +71,13 @@ elseif filereadable(s:plug) && filereadable(s:tender)
 endif
 
 " ===== for markdown =====
-let g:vim_markdown_fenced_languages = ['html', 'css', 'js=javascript', 'c', 'cpp', 'python', 'ruby', 'vim', 'sh', 'bash=sh', 'toml', 'yaml', 'json', 'nginx', 'Dockerfile']
+let g:vim_markdown_fenced_languages = [
+      \ 'html', 'css', 'js=javascript', 'ts=typescript',
+      \ 'c', 'cpp', 'java',
+      \ 'python', 'ruby',
+      \ 'vim', 'sh', 'bash=sh',
+      \ 'toml', 'yaml', 'json', 'ini',
+      \ 'nginx', 'Dockerfile']
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
@@ -86,49 +92,6 @@ let g:vim_markdown_toml_frontmatter = 1
 let g:vim_markdown_json_frontmatter = 1
 let g:vim_markdown_strikethrough = 1
 
-" ----- for vimwiki -----
-let g:vimwiki_conceallevel = 0
-let g:vimwiki_conceal_code_blocks = 0
-let g:vimwiki_list = [{
-      \ 'path': '~/vimwiki',
-      \ 'syntax': 'markdown',
-      \ 'ext': '.wikimd',
-      \ 'nested_syntaxes': {'python': 'python', 'c++': 'cpp'},
-      \ 'links_space_char': '-',
-      \ }]
-let g:vimwiki_menu = ''
-let g:vimwiki_diary_months = {
-    \ 1: '1 January', 2: '2 February', 3: '3 March',
-    \ 4: '4 April', 5: '5 May', 6: '6 June',
-    \ 7: '7 July', 8: '8 August', 9: '9 September',
-    \ 10: '10 October', 11: '11 November', 12: '12 December'
-    \ }
-let g:vimwiki_auto_header = 1
-
-function! ToggleVimwikiSyntax()
-  if ( &filetype == 'markdown')
-    set filetype=vimwiki
-  elseif ( &filetype == 'vimwiki' )
-    set filetype=markdown
-  endif
-endfunction
-command! -nargs=* -range ToggleVimwikiSyntax call ToggleVimwikiSyntax()
-nmap <Leader>s :<c-u>call ToggleVimwikiSyntax()<CR>
-
-nmap <Leader>wf <Plug>VimwikiFollowLink
-nmap <Leader>ws <Plug>VimwikiSplitLink
-nmap <Leader>wv <Plug>VimwikiVSplitLink
-nmap <Leader>wn <Plug>VimwikiNormalizeLink
-vmap <Leader>wn <Plug>VimwikiNormalizeLinkVisual
-nmap <Leader>wb <Plug>VimwikiGoBackLink
-nmap <Leader>wd <Plug>VimwikiDeleteFile
-nmap <Leader>wr <Plug>VimwikiRenameFile
-
-nmap <Leader>wn <Plug>VimwikiNextLink
-nmap <Leader>wn <Plug>VimwikiNextTask
-nmap <Leader>wp <Plug>VimwikiPrevLink
-nmap <Leader>wp <Plug>VimwikiPrevTask
-
 " ----- for previm -----
 if has('unit')
 elseif has('mac')
@@ -137,8 +100,26 @@ elseif has('win32') || has('win64')
   let g:previm_open_cmd = 'chrome'
 endif
 augroup PrevimSettings
-    autocmd!
-    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-    autocmd BufNewFile,BufRead *.{wiki,wikimd} set filetype=vimwiki
+  autocmd!
+  autocmd BufNewFile,BufRead *.{md,mkd} set filetype=markdown
 augroup END
+
+" ----- for wiki.vim -----
+let g:wiki_root = '~/doc/wiki'
+let g:wiki_link_extension = '.md'
+let g:wiki_link_target_type = 'md' "create markdown type link
+let g:wiki_filetypes = ['md', 'adoc', 'wiki']
+let g:wiki_month_names = [
+      \ '1 January', '2 February', '3 March', '4 April',
+      \ '5 May', '6 June', '7 July', '8 August',
+      \ '9 September', '10 October', '11 November', '12 December']
+let g:wiki_journal = {
+      \ 'name': 'journal',
+      \ 'frequency': 'daily',
+      \ 'date_format': {
+      \   'daily': '%Y-%m-%d',
+      \   'weekly': '%Y-w%V',
+      \   'monthly': '%Y-m%m',
+      \ },
+      \ }
 
