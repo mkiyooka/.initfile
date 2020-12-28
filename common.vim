@@ -8,7 +8,7 @@ if filereadable(s:gps)
 endif
 
 
-if has('unit')
+if has('unix')
   "for Unix
   set shell=/bin/bash
   set makeprg=make
