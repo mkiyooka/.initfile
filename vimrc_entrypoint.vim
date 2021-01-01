@@ -18,16 +18,18 @@ if filereadable(s:rc_plug_mapping)
   execute 'source' s:rc_plug_mapping
 endif
 
-set lines=40
-set columns=100
+if has('gui')
+  set lines=40
+  set columns=100
 
-" GUI menu bar is not present
-set guioptions=
+  " GUI menu bar is not present
+  set guioptions=
 
-" encode setting for menu
-source $VIMRUNTIME/delmenu.vim
-set langmenu=ja_jp.utf-8
-source $VIMRUNTIME/menu.vim
+  " encode setting for menu
+  source $VIMRUNTIME/delmenu.vim
+  set langmenu=ja_jp.utf-8
+  source $VIMRUNTIME/menu.vim
+endif
 
 set conceallevel=0
 set concealcursor=n

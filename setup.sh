@@ -1,10 +1,9 @@
-#!/bin/sh
+#!/bin/sh -eux
+
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 for BASE in \
-	#bash_profile \
-	#bashrc \
 	vimrc \
 	gvimrc \
 	screenrc \

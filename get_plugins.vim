@@ -62,7 +62,7 @@ else
   let s:tender  = expand('$HOME/.vim/plugged/tender.vim/colors/tender.vim')
 endif
 
-if filereadable(s:plug) && filereadable(s:dracula)
+if has('gui') && filereadable(s:plug) && filereadable(s:dracula)
   colorscheme dracula
 elseif filereadable(s:plug) && filereadable(s:molokai)
   colorscheme molokai
