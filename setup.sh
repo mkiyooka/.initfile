@@ -11,5 +11,6 @@ for BASE in \
     ln -fsv $PWD/$BASE ~/.$BASE
 done
 
+mkdir -p ~/doc/wiki
 vim -c PlugInstall -c q -c q
 
