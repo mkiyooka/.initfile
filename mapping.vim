@@ -69,6 +69,4 @@ function! ToggleConceal()
   endif
 endfunction
 command! -nargs=* -range ToggleConceal call ToggleConceal()
-nnoremap <Leader>c :<c-u>call ToggleConceal()<CR>
-
-nnoremap <c-p> :<c-u>FZFMru<CR>
+nnoremap <Leader>c :<c-u>ToggleConceal<CR>

@@ -22,8 +22,6 @@ if filereadable(s:plug)
   Plug 'airblade/vim-gitgutter'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
-  Plug 'pbogut/fzf-mru.vim'
-  let g:fzf_mru_no_sort = 1
   Plug 'junegunn/vim-easy-align'
   "Plug 'ctrlpvim/ctrlp.vim'
   "Plug 'mattn/ctrlp-matchfuzzy'
@@ -49,6 +47,7 @@ if filereadable(s:plug)
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
   Plug 'cespare/vim-toml', { 'for': ['toml'] }
   Plug 'lervag/wiki.vim'
+  Plug 'lambdalisue/fern.vim'
 
   "Programming support
   Plug 'editorconfig/editorconfig-vim' "Help maintain consistent coding styles
