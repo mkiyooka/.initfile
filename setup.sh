@@ -8,6 +8,7 @@ for BASE in \
 	gvimrc \
 	editorconfig \
 	screenrc \
+	tmux.conf \
 	gitconfig; do
     ln -fsv $PWD/$BASE ~/.$BASE
 done
