@@ -6,6 +6,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 for BASE in \
 	vimrc \
 	gvimrc \
+	editorconfig \
 	screenrc \
 	gitconfig; do
     ln -fsv $PWD/$BASE ~/.$BASE
