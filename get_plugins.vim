@@ -22,8 +22,12 @@ if filereadable(s:plug)
   Plug 'airblade/vim-gitgutter'
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
+  Plug 'pbogut/fzf-mru.vim'
+  let g:fzf_mru_no_sort = 1
   Plug 'junegunn/vim-easy-align'
-  Plug 'kien/ctrlp.vim'
+  "Plug 'ctrlpvim/ctrlp.vim'
+  "Plug 'mattn/ctrlp-matchfuzzy'
+  "let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
   Plug 'markonm/traces.vim' "This plugin highlits patterns and ranges for Ex commands
   Plug 'preservim/tagbar' "Help using tags. vim >= 7.3.1058, Exuberant Ctags >= 5.5
   Plug 'scrooloose/nerdtree'
@@ -39,7 +43,7 @@ if filereadable(s:plug)
   Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
   Plug 'mattn/emmet-vim', { 'for': ['html'] }
   Plug 'tpope/vim-markdown', {'for': ['markdown'] }
-  Plug 'previm/previm', {'for': ['markdown'] }
+  Plug 'syncmk/previm', {'for': ['markdown'] }
   Plug 'mattn/vim-maketable' "Make markdown table
   Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
@@ -62,7 +66,7 @@ else
   let s:tender  = expand('$HOME/.vim/plugged/tender.vim/colors/tender.vim')
 endif
 
-if filereadable(s:plug) && filereadable(s:dracula)
+if has('gui') && filereadable(s:plug) && filereadable(s:dracula)
   colorscheme dracula
 elseif filereadable(s:plug) && filereadable(s:molokai)
   colorscheme molokai
@@ -93,7 +97,7 @@ let g:vim_markdown_json_frontmatter = 1
 let g:vim_markdown_strikethrough = 1
 
 " ----- for previm -----
-if has('unit')
+if has('unix')
 elseif has('mac')
   let g:previm_open_cmd = 'open -a Google\ Chrome'
 elseif has('win32') || has('win64')
