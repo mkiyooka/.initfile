@@ -26,5 +26,5 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
-nnoremap <C-Space> :NERDTreeToggle<CR>
-nnoremap <c-p> :<c-u>Fern . -reveal=% -drawer -toggle<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
+nnoremap <leader>f :<c-u>Fern . -reveal=% -drawer -toggle<CR>
