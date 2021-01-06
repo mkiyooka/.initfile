@@ -48,6 +48,7 @@ if filereadable(s:plug)
   Plug 'cespare/vim-toml', { 'for': ['toml'] }
   Plug 'lervag/wiki.vim'
   Plug 'lambdalisue/fern.vim'
+  Plug 'lambdalisue/fern-bookmark.vim'
 
   "Programming support
   Plug 'editorconfig/editorconfig-vim' "Help maintain consistent coding styles
