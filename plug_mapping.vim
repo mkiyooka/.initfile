@@ -1,8 +1,6 @@
 "ブックマークを初期表示
 let g:NERDTreeShowBookmarks=1
-"起動時にNERDTreeを表示
-"autocmd vimenter * NERDTree
-map <C-Space> :NERDTreeToggle<CR>
+
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
