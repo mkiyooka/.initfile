@@ -16,6 +16,13 @@ case "${OSTYPE}" in
         alias ls='ls -FG'
         alias ll='ls -alFG'
         alias la="ls -laG"
+
+        # XDG Base Directory
+        export XDG_CONFIG_HOME=$HOME/.config
+        export XDG_DATA_HOME=$HOME/.data
+        export XDG_CACHE_HOME=$HOME/.cache
+        export XDG_RUNTIME_HOME=$HOME/.runtime
+
         if [ -f `brew --prefix`/etc/bash_completion ]; then
             source `brew --prefix`/etc/bash_completion
         fi
@@ -27,6 +34,13 @@ case "${OSTYPE}" in
         alias ls='ls --color=auto'
         alias ll='ls -l --color=auto'
         alias la='ls -la --color=auto'
+
+        # XDG Base Directory
+        export XDG_CONFIG_HOME=$HOME/.config
+        export XDG_DATA_HOME=$HOME/.data
+        export XDG_CACHE_HOME=$HOME/.cache
+        export XDG_RUNTIME_HOME=$HOME/.runtime
+
         if [ -f /etc/profile.d/bash_completion.sh ]; then
             source /etc/profile.d/bash_completion.sh
         fi
@@ -40,12 +54,14 @@ case "${OSTYPE}" in
             eval "$(rbenv init -)"
         fi
         # for Rust
-        if [ -e $HOME/.cargo/bin ]; then
-            export PATH=$HOME/.cargo/bin:$PATH
+        export CARGO_HOME=$XDG_DATA_HOME/cargo
+        if [ -e $CARGO_HOME/bin ]; then
+            export PATH=$CARGO_HOME/bin:$PATH
         fi
         # for Golang
-        if [ -e $HOME/.go/bin ]; then
-            export PATH=$HOME/.go/bin:$PATH
+        export GOPATH=$XDG_DATA_HOME/go
+        if [ -e $GOPATH/bin ]; then
+            export PATH=$GOPATH/bin:$PATH
         fi
         # for self-built gcc/g++
         export LD_LIBRARY_PATH=/usr/lib:/usr/lib64
@@ -60,6 +76,17 @@ case "${OSTYPE}" in
         alias ls='ls --color=auto'
         alias ll='ls -l --color=auto'
         alias la='ls -la --color=auto'
+
+        # for Rust
+        export CARGO_HOME=$XDG_DATA_HOME/cargo
+        if [ -e $CARGO_HOME/bin ]; then
+            export PATH=$CARGO_HOME/bin:$PATH
+        fi
+        # for Golang
+        export GOPATH=$XDG_DATA_HOME/go
+        if [ -e $GOPATH/bin ]; then
+            export PATH=$GOPATH/bin:$PATH
+        fi
         ;;
 esac
 
