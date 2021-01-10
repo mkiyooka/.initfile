@@ -9,7 +9,8 @@ for BASE in \
 	editorconfig \
 	screenrc \
 	tmux.conf \
-	gitconfig; do
+	gitconfig \
+	gitignore; do
     ln -fsv $PWD/$BASE ~/.$BASE
 done
 

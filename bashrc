@@ -10,9 +10,9 @@ else
 fi
 
 # "-F":ディレクトリに"/"を表示 / "-G"でディレクトリを色表示
-export LSCOLORS=gxfxcxdxbxegedabagacad
 case "${OSTYPE}" in
     darwin*)
+        export LSCOLORS=gxfxcxdxbxegedabagacad
         alias ls='ls -FG'
         alias ll='ls -alFG'
         alias la="ls -laG"
@@ -24,9 +24,9 @@ case "${OSTYPE}" in
         export GRADLE_HOME=/usr/local/Cellar/gradle/5.4
         ;;
     linux*)
-        alias ls='ls --color'
-        alias ll='ls -l --color'
-        alias la='ls -la --color'
+        alias ls='ls --color=auto'
+        alias ll='ls -l --color=auto'
+        alias la='ls -la --color=auto'
         if [ -f /etc/profile.d/bash_completion.sh ]; then
             source /etc/profile.d/bash_completion.sh
         fi
@@ -57,9 +57,9 @@ case "${OSTYPE}" in
         fi
         ;;
     msys*)
-        alias ls='ls --color'
-        alias ll='ls -l --color'
-        alias la='ls -la --color'
+        alias ls='ls --color=auto'
+        alias ll='ls -l --color=auto'
+        alias la='ls -la --color=auto'
         ;;
 esac
 

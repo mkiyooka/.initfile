@@ -16,7 +16,7 @@
 [color]
 	ui = true
 [core]
-	edicor = vim
+	editor = vim
 	autocrlf = false
 [merge]
 	ff = false
