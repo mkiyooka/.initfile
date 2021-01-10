@@ -1,6 +1,15 @@
 curl -fLo %HOME%\vimfiles\autoload\plug.vim --create-dirs ^
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+del %HOME%\.bash_profile
+del %HOME%\.bashrc
+del %HOME%\.vimrc
+del %HOME%\.gvimrc
+del %HOME%\.screenrc
+del %HOME%\.tmux.config
+del %HOME%\.gitconfig
+del %HOME%\.gitignore
+
 mklink %HOME%\.bash_profile %HOME%\.initfile\bash_profile
 mklink %HOME%\.bashrc %HOME%\.initfile\bashrc
 mklink %HOME%\.vimrc %HOME%\.initfile\vimrc
