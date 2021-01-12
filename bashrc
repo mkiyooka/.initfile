@@ -1,4 +1,4 @@
-if [ -z "$PS1" ]; then
+aif [ -z "$PS1" ]; then
     return
 fi
 
@@ -31,6 +31,9 @@ case "${OSTYPE}" in
         export GRADLE_HOME=/usr/local/Cellar/gradle/5.4
         ;;
     linux*)
+        if [ -f $HOME/.initfile/colorrc ]; then
+            eval `dircolors $HOME/.initfile/colorrc`
+        fi
         alias ls='ls --color=auto'
         alias ll='ls -l --color=auto'
         alias la='ls -la --color=auto'
