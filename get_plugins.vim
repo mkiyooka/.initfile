@@ -23,7 +23,9 @@ if filereadable(s:plug)
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/vim-easy-align'
-  Plug 'kien/ctrlp.vim'
+  "Plug 'ctrlpvim/ctrlp.vim'
+  "Plug 'mattn/ctrlp-matchfuzzy'
+  "let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
   Plug 'markonm/traces.vim' "This plugin highlits patterns and ranges for Ex commands
   Plug 'preservim/tagbar' "Help using tags. vim >= 7.3.1058, Exuberant Ctags >= 5.5
   Plug 'scrooloose/nerdtree'
@@ -39,11 +41,14 @@ if filereadable(s:plug)
   Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
   Plug 'mattn/emmet-vim', { 'for': ['html'] }
   Plug 'tpope/vim-markdown', {'for': ['markdown'] }
-  Plug 'previm/previm', {'for': ['markdown'] }
+  Plug 'syncmk/previm', {'for': ['markdown'] }
   Plug 'mattn/vim-maketable' "Make markdown table
   Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
   Plug 'cespare/vim-toml', { 'for': ['toml'] }
+  Plug 'lervag/wiki.vim'
+  Plug 'lambdalisue/fern.vim'
+  Plug 'lambdalisue/fern-bookmark.vim'
 
   "Programming support
   Plug 'editorconfig/editorconfig-vim' "Help maintain consistent coding styles
@@ -61,15 +66,64 @@ else
   let s:tender  = expand('$HOME/.vim/plugged/tender.vim/colors/tender.vim')
 endif
 
-if filereadable(s:plug) && filereadable(s:dracula)
+if has('gui') && filereadable(s:plug) && filereadable(s:dracula)
   colorscheme dracula
 elseif filereadable(s:plug) && filereadable(s:molokai)
   colorscheme molokai
 elseif filereadable(s:plug) && filereadable(s:tender)
   colorscheme tender
-else
-  colorscheme desert
 endif
 
-let g:markdown_fenced_languages = ['html', 'css', 'js=javascript', 'c', 'cpp', 'python', 'ruby', 'vim', 'sh', 'bash=sh', 'toml', 'yaml', 'json', 'nginx', 'Dockerfile']
-let g:markdown_syntax_conceal = 0
+" ===== for markdown =====
+let g:vim_markdown_fenced_languages = [
+      \ 'html', 'css', 'js=javascript', 'ts=typescript',
+      \ 'c', 'cpp', 'java',
+      \ 'python', 'ruby',
+      \ 'vim', 'sh', 'bash=sh',
+      \ 'toml', 'yaml', 'json', 'ini',
+      \ 'nginx', 'Dockerfile']
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_auto_extension_ext = 'md'
+
+" ----- for markdown . markdown extention -----
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+let g:vim_markdown_frontmatter = 1
+let g:vim_markdown_toml_frontmatter = 1
+let g:vim_markdown_json_frontmatter = 1
+let g:vim_markdown_strikethrough = 1
+
+" ----- for previm -----
+if has('unix')
+elseif has('mac')
+  let g:previm_open_cmd = 'open -a Google\ Chrome'
+elseif has('win32') || has('win64')
+  let g:previm_open_cmd = 'chrome'
+endif
+augroup PrevimSettings
+  autocmd!
+  autocmd BufNewFile,BufRead *.{md,mkd} set filetype=markdown
+augroup END
+
+" ----- for wiki.vim -----
+let g:wiki_root = '~/doc/wiki'
+let g:wiki_link_extension = '.md'
+let g:wiki_link_target_type = 'md' "create markdown type link
+let g:wiki_filetypes = ['md', 'adoc', 'wiki']
+let g:wiki_month_names = [
+      \ '1 January', '2 February', '3 March', '4 April',
+      \ '5 May', '6 June', '7 July', '8 August',
+      \ '9 September', '10 October', '11 November', '12 December']
+let g:wiki_journal = {
+      \ 'name': 'journal',
+      \ 'frequency': 'daily',
+      \ 'date_format': {
+      \   'daily': '%Y-%m-%d',
+      \   'weekly': '%Y-w%V',
+      \   'monthly': '%Y-m%m',
+      \ },
+      \ }
+

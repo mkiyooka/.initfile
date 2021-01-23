@@ -48,10 +48,8 @@ function! DisableCursorLC()
   let s:fCursorLC = 0
 endfunction
 command! DisableCursorLC :call DisableCursorLC()
-
 call DisableCursorLC()
 
-command! -nargs=* -range ToggleCursorLC call ToggleCursorLC()
 function! ToggleCursorLC()
   if s:fCursorLC == 1
     call DisableCursorLC()
@@ -59,4 +57,16 @@ function! ToggleCursorLC()
     call EnableCursorLC()
   endif
 endfunction
+command! -nargs=* -range ToggleCursorLC call ToggleCursorLC()
 
+function! ToggleConceal()
+  if ( &conceallevel < 1)
+    set conceallevel=3
+    set concealcursor=n
+  elseif ( &conceallevel > 0)
+    set conceallevel=0
+    set concealcursor=
+  endif
+endfunction
+command! -nargs=* -range ToggleConceal call ToggleConceal()
+nnoremap <Leader>c :<c-u>ToggleConceal<CR>

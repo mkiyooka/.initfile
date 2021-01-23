@@ -1,4 +1,4 @@
-if [ -z "$PS1" ]; then
+aif [ -z "$PS1" ]; then
     return
 fi
 
@@ -10,12 +10,19 @@ else
 fi
 
 # "-F":ディレクトリに"/"を表示 / "-G"でディレクトリを色表示
-export LSCOLORS=gxfxcxdxbxegedabagacad
 case "${OSTYPE}" in
     darwin*)
+        export LSCOLORS=gxfxcxdxbxegedabagacad
         alias ls='ls -FG'
         alias ll='ls -alFG'
         alias la="ls -laG"
+
+        # XDG Base Directory
+        export XDG_CONFIG_HOME=$HOME/.config
+        export XDG_DATA_HOME=$HOME/.data
+        export XDG_CACHE_HOME=$HOME/.cache
+        export XDG_RUNTIME_HOME=$HOME/.runtime
+
         if [ -f `brew --prefix`/etc/bash_completion ]; then
             source `brew --prefix`/etc/bash_completion
         fi
@@ -24,13 +31,23 @@ case "${OSTYPE}" in
         export GRADLE_HOME=/usr/local/Cellar/gradle/5.4
         ;;
     linux*)
-        alias ls='ls --color'
-        alias ll='ls -l --color'
-        alias la='ls -la --color'
+        if [ -f $HOME/.initfile/colorrc ]; then
+            eval `dircolors $HOME/.initfile/colorrc`
+        fi
+        alias ls='ls --color=auto'
+        alias ll='ls -l --color=auto'
+        alias la='ls -la --color=auto'
+
+        # XDG Base Directory
+        export XDG_CONFIG_HOME=$HOME/.config
+        export XDG_DATA_HOME=$HOME/.data
+        export XDG_CACHE_HOME=$HOME/.cache
+        export XDG_RUNTIME_HOME=$HOME/.runtime
+
         if [ -f /etc/profile.d/bash_completion.sh ]; then
             source /etc/profile.d/bash_completion.sh
         fi
-        if [ -e /usr/local/bin/vim ]; then
+        if [ -f /usr/local/bin/vim ]; then
             alias vim='/usr/local/bin/vim'
             alias vi='/usr/local/bin/vim'
         fi
@@ -40,12 +57,14 @@ case "${OSTYPE}" in
             eval "$(rbenv init -)"
         fi
         # for Rust
-        if [ -e $HOME/.cargo/bin ]; then
-            export PATH=$HOME/.cargo/bin:$PATH
+        export CARGO_HOME=$XDG_DATA_HOME/cargo
+        if [ -e $CARGO_HOME/bin ]; then
+            export PATH=$CARGO_HOME/bin:$PATH
         fi
         # for Golang
-        if [ -e $HOME/.go/bin ]; then
-            export PATH=$HOME/.go/bin:$PATH
+        export GOPATH=$XDG_DATA_HOME/go
+        if [ -e $GOPATH/bin ]; then
+            export PATH=$GOPATH/bin:$PATH
         fi
         # for self-built gcc/g++
         export LD_LIBRARY_PATH=/usr/lib:/usr/lib64
@@ -57,14 +76,25 @@ case "${OSTYPE}" in
         fi
         ;;
     msys*)
-        alias ls='ls --color'
-        alias ll='ls -l --color'
-        alias la='ls -la --color'
+        alias ls='ls --color=auto'
+        alias ll='ls -l --color=auto'
+        alias la='ls -la --color=auto'
+
+        # for Rust
+        export CARGO_HOME=$XDG_DATA_HOME/cargo
+        if [ -e $CARGO_HOME/bin ]; then
+            export PATH=$CARGO_HOME/bin:$PATH
+        fi
+        # for Golang
+        export GOPATH=$XDG_DATA_HOME/go
+        if [ -e $GOPATH/bin ]; then
+            export PATH=$GOPATH/bin:$PATH
+        fi
         ;;
 esac
 
 which col &> /dev/null; RETURN_CODE=$?
-if [ -e /bin/sh ] && [ $RETURN_CODE = 0 ]; then
+if [ -f /bin/sh ] && [ $RETURN_CODE = 0 ]; then
     export MANPAGER="/bin/sh -c \"col -b -x|vim -R -c 'set ft=man nolist nonu noma' -\""
 fi
 

@@ -1,1 +1,4 @@
-escape ^z^z
+escape ^\\ # key bind: C-a -> C-\
+startup_message off
+screen
+screen $SHELL -c 'screen -X caption always "$STY"'

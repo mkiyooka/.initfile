@@ -9,7 +9,7 @@ function! DefaultStyle()
   set lines=35
   let s:fDemoStyle=0
 endfunction
-:command! DefaultStyle :call DefaultStyle()
+command! DefaultStyle :call DefaultStyle()
 
 " -----
 " Projector
@@ -22,10 +22,9 @@ function! DemoStyle()
   set lines=30
   let s:fDemoStyle=1
 endfunction
-:command! DemoStyle :call DemoStyle()
+command! DemoStyle :call DemoStyle()
 
 call DefaultStyle()
-command! -nargs=* -range ToggleDisplayStyle call ToggleDisplayStyle()
 function! ToggleDisplayStyle()
   if s:fDemoStyle == 1
     call DefaultStyle()
@@ -35,6 +34,7 @@ function! ToggleDisplayStyle()
     call DisableCursorLC()
   endif
 endfunction
+command! -nargs=* -range ToggleDisplayStyle call ToggleDisplayStyle()
 
 nnoremap <C-w><space> <ESC>:<C-u>ToggleDisplayStyle<CR>
 highlight SpecialKey    guifg=#333333 guibg=#181D1E gui=italic
