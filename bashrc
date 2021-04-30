@@ -1,4 +1,4 @@
-aif [ -z "$PS1" ]; then
+if [ -z "$PS1" ]; then
     return
 fi
 
@@ -23,12 +23,20 @@ case "${OSTYPE}" in
         export XDG_CACHE_HOME=$HOME/.cache
         export XDG_RUNTIME_HOME=$HOME/.runtime
 
+        if [ -e $HOME/.local/bin ]; then
+            export PATH=$HOME/.local/bin:$PATH
+        fi
+
         if [ -f `brew --prefix`/etc/bash_completion ]; then
             source `brew --prefix`/etc/bash_completion
         fi
         export JAVA_HOME=`/usr/libexec/java_home -v 1.8` #java8が使いたいとき
         #export GRADLE_HOME=$(brew info gradle | grep /usr/local/Cellar/gradle | awk '{print $1}')
         export GRADLE_HOME=/usr/local/Cellar/gradle/5.4
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+        [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+        #brew services start emacs
         ;;
     linux*)
         if [ -f $HOME/.initfile/colorrc ]; then
