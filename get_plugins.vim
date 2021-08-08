@@ -127,3 +127,7 @@ let g:wiki_journal = {
       \ },
       \ }
 
+augroup Wiki
+  autocmd!
+  autocmd BufNewFile,BufRead *.{md,mkd} nmap <leader><CR> <Plug>(wiki-link-open)
+augroup END
