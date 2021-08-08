@@ -28,10 +28,8 @@ call DefaultStyle()
 function! ToggleDisplayStyle()
   if s:fDemoStyle == 1
     call DefaultStyle()
-    call EnableCursorLC()
   else
     call DemoStyle()
-    call DisableCursorLC()
   endif
 endfunction
 command! -nargs=* -range ToggleDisplayStyle call ToggleDisplayStyle()
