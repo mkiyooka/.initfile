@@ -4,9 +4,9 @@ fi
 
 # default:cyan / root:red
 if [ $UID -eq 0 ]; then
-    PS1="[\[\033[31m\]\u@\h\[\033[00m\] \[\033[32m\]\W\[\033[00m\]]> "
+    PS1="[\[\e[31m\]\u@\h\[\e[00m\] \[\e[32m\]\W\[\e[00m\]]> "
 else
-    PS1="[\[\033[36m\]\u@\h\[\033[00m\] \[\033[32m\]\W\[\033[00m\]]\\$ "
+    PS1="[\[\e[36m\]\u@\h\[\e[00m\] \[\e[32m\]\W\[\e[00m\]]\\$ "
 fi
 
 # "-F":ディレクトリに"/"を表示 / "-G"でディレクトリを色表示
@@ -71,6 +71,16 @@ case "${OSTYPE}" in
         if [ -e /usr/local/lib64 ]; then
             export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
         fi
+        # ssh-agent
+        if [ -z "$SSH_AUTH_SOCK" ]; then
+            # Check for a currently running instance of the agent
+            RUNNING_AGENT="`ps -ax | grep 'ssh-agent -s' | grep -v grep | wc -l | tr -d '[:space:]'`"
+            if [ "$RUNNING_AGENT" = "0" ]; then
+                # Launch a new instance of the agent
+                ssh-agent -s &> .ssh/ssh-agent
+            fi
+            eval `cat .ssh/ssh-agent`
+        fi
         ;;
     msys*)
         alias ls='ls --color=auto'
@@ -87,6 +97,30 @@ case "${OSTYPE}" in
         if [ -e $GOPATH/bin ]; then
             export PATH=$GOPATH/bin:$PATH
         fi
+        # ssh-agent
+
+        env=~/.ssh/agent.env
+
+        agent_load_env () { test -f "$env" && . "$env" >| /dev/null ; }
+
+        agent_start () {
+            (umask 077; ssh-agent >| "$env")
+            . "$env" >| /dev/null ; }
+
+        agent_load_env
+
+        # agent_run_state: 0=agent running w/ key; 1=agent w/o key; 2= agent not running
+        agent_run_state=$(ssh-add -l >| /dev/null 2>&1; echo $?)
+
+        if [ ! "$SSH_AUTH_SOCK" ] || [ $agent_run_state = 2 ]; then
+            agent_start
+            ssh-add
+        elif [ "$SSH_AUTH_SOCK" ] && [ $agent_run_state = 1 ]; then
+            ssh-add
+        fi
+
+        unset env
+
         ;;
 esac
 
