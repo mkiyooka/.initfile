@@ -23,14 +23,25 @@ case "${OSTYPE}" in
         export XDG_CACHE_HOME=$HOME/.cache
         export XDG_RUNTIME_HOME=$HOME/.runtime
 
+        if [ -e $HOME/.local/bin ]; then
+            export PATH=$HOME/.local/bin:$PATH
+        fi
+
         if [ -f `brew --prefix`/etc/bash_completion ]; then
             source `brew --prefix`/etc/bash_completion
         fi
         export JAVA_HOME=`/usr/libexec/java_home -v 1.8` #java8が使いたいとき
         #export GRADLE_HOME=$(brew info gradle | grep /usr/local/Cellar/gradle | awk '{print $1}')
         export GRADLE_HOME=/usr/local/Cellar/gradle/5.4
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+        [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+        #brew services start emacs
         ;;
     linux*)
+        if [ -f $HOME/.initfile/colorrc ]; then
+            eval `dircolors $HOME/.initfile/colorrc`
+        fi
         alias ls='ls --color=auto'
         alias ll='ls -l --color=auto'
         alias la='ls -la --color=auto'
@@ -44,7 +55,7 @@ case "${OSTYPE}" in
         if [ -f /etc/profile.d/bash_completion.sh ]; then
             source /etc/profile.d/bash_completion.sh
         fi
-        if [ -e /usr/local/bin/vim ]; then
+        if [ -f /usr/local/bin/vim ]; then
             alias vim='/usr/local/bin/vim'
             alias vi='/usr/local/bin/vim'
         fi
@@ -126,7 +137,7 @@ case "${OSTYPE}" in
 esac
 
 which col &> /dev/null; RETURN_CODE=$?
-if [ -e /bin/sh ] && [ $RETURN_CODE = 0 ]; then
+if [ -f /bin/sh ] && [ $RETURN_CODE = 0 ]; then
     export MANPAGER="/bin/sh -c \"col -b -x|vim -R -c 'set ft=man nolist nonu noma' -\""
 fi
 
