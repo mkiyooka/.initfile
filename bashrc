@@ -37,6 +37,13 @@ case "${OSTYPE}" in
         [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
         [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
         #brew services start emacs
+        alias emg='emacs'
+        alias em='emacs -nw'
+        alias E='emacsclient -t'
+        alias kill-emacs="emacsclient -e '(kill-emacs)'"
+        [ -s "`brew --prefix`/bin/ctags" ] && alias ctags="`brew --prefix`/bin/ctags"
+        export EDITOR=vim
+        [ -s `command -v direnv` ] && eval "$(direnv hook bash)"
         ;;
     linux*)
         if [ -f $HOME/.initfile/colorrc ]; then
@@ -70,9 +77,9 @@ case "${OSTYPE}" in
             export PATH=$CARGO_HOME/bin:$PATH
         fi
         # for Golang
-        export GOPATH=$XDG_DATA_HOME/go
-        if [ -e $GOPATH/bin ]; then
-            export PATH=$GOPATH/bin:$PATH
+        if [ -s `brew --prefix`'/Cellar/go/' ]; then
+            p=`brew --prefix`'/Cellar/go/'
+            export GOROOT="$p`ls $p`/libexec/"
         fi
         # for self-built gcc/g++
         export LD_LIBRARY_PATH=/usr/lib:/usr/lib64
