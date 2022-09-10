@@ -13,7 +13,7 @@ if filereadable(s:plug)
   "Colorscheme
   Plug 'dracula/vim', {'as':'dracula'}
   Plug 'jacoborus/tender.vim'
-  Plug 'syncmk/molokai'
+  Plug 'mkiyooka/molokai'
 
   "Appearance of vim
   " Status line styler
@@ -46,7 +46,7 @@ if filereadable(s:plug)
   Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
   Plug 'mattn/emmet-vim', { 'for': ['html'] }
   Plug 'tpope/vim-markdown', {'for': ['markdown'] }
-  Plug 'syncmk/previm', {'for': ['markdown'] }
+  Plug 'mkiyooka/previm', {'for': ['markdown'] }
   Plug 'mattn/vim-maketable' "Make markdown table
   Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
   Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
@@ -107,7 +107,7 @@ if has('unix')
 elseif has('mac')
   let g:previm_open_cmd = 'open -a Google\ Chrome'
 elseif has('win32') || has('win64')
-  let g:previm_open_cmd = 'chrome'
+  let g:previm_open_cmd = 'C:\\Program\ Files\ (x86)\\Google\\Chrome\\Application\\chrome.exe'
 endif
 augroup PrevimSettings
   autocmd!
@@ -133,3 +133,7 @@ let g:wiki_journal = {
       \ },
       \ }
 
+augroup Wiki
+  autocmd!
+  autocmd BufNewFile,BufRead *.{md,mkd} nmap <leader><CR> <Plug>(wiki-link-open)
+augroup END
