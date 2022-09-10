@@ -16,7 +16,8 @@ if filereadable(s:plug)
   Plug 'syncmk/molokai'
 
   "Appearance of vim
-  Plug 'itchyny/lightline.vim' " Status line styler
+  " Status line styler
+  Plug 'itchyny/lightline.vim'
 
   "Common
   Plug 'airblade/vim-gitgutter'
@@ -26,8 +27,11 @@ if filereadable(s:plug)
   "Plug 'ctrlpvim/ctrlp.vim'
   "Plug 'mattn/ctrlp-matchfuzzy'
   "let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
-  Plug 'markonm/traces.vim' "This plugin highlits patterns and ranges for Ex commands
-  Plug 'preservim/tagbar' "Help using tags. vim >= 7.3.1058, Exuberant Ctags >= 5.5
+
+  "This plugin highlits patterns and ranges for Ex commands
+  Plug 'markonm/traces.vim'
+  "Help using tags. vim >= 7.3.1058, Exuberant Ctags >= 5.5
+  Plug 'preservim/tagbar'
   Plug 'scrooloose/nerdtree'
   Plug 'skanehira/translate.vim'
   Plug 'tpope/vim-commentary'
@@ -37,7 +41,8 @@ if filereadable(s:plug)
   Plug 'vim-scripts/sudo.vim'
 
   "For specific languages
-  Plug 'sheerun/vim-polyglot' "Language support plugin assortment
+  "Language support plugin assortment
+  Plug 'sheerun/vim-polyglot'
   Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile'] }
   Plug 'mattn/emmet-vim', { 'for': ['html'] }
   Plug 'tpope/vim-markdown', {'for': ['markdown'] }
@@ -51,7 +56,8 @@ if filereadable(s:plug)
   Plug 'lambdalisue/fern-bookmark.vim'
 
   "Programming support
-  Plug 'editorconfig/editorconfig-vim' "Help maintain consistent coding styles
+  "Help maintain consistent coding styles
+  Plug 'editorconfig/editorconfig-vim'
   Plug 'w0rp/ale' "Asynchronous Lint Engine
   call plug#end()
 endif
