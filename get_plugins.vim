@@ -14,6 +14,7 @@ if filereadable(s:plug)
   Plug 'dracula/vim', {'as':'dracula'}
   Plug 'jacoborus/tender.vim'
   Plug 'mkiyooka/molokai'
+  Plug 'nathanaelkane/vim-indent-guides'
 
   "Appearance of vim
   " Status line styler
@@ -24,7 +25,7 @@ if filereadable(s:plug)
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
   Plug 'junegunn/vim-easy-align'
-  "Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'ctrlpvim/ctrlp.vim'
   "Plug 'mattn/ctrlp-matchfuzzy'
   "let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
 
@@ -37,7 +38,7 @@ if filereadable(s:plug)
   Plug 'tpope/vim-commentary'
   Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-surround'
-  Plug 'vim-scripts/mru.vim'
+  Plug 'yegappan/mru'
   Plug 'vim-scripts/sudo.vim'
 
   "For specific languages
@@ -53,7 +54,10 @@ if filereadable(s:plug)
   Plug 'cespare/vim-toml', { 'for': ['toml'] }
   Plug 'lervag/wiki.vim'
   Plug 'lambdalisue/fern.vim'
+  Plug 'lambdalisue/fern-hijack.vim'
   Plug 'lambdalisue/fern-bookmark.vim'
+  Plug 'lambdalisue/fern-git-status.vim'
+  Plug 'yuki-yano/fern-preview.vim'
 
   "Programming support
   "Help maintain consistent coding styles
@@ -73,21 +77,25 @@ else
 endif
 
 if has('gui') && filereadable(s:plug) && filereadable(s:dracula)
+  let g:dracula_italic = 0
   colorscheme dracula
+  let g:colorscheme = 'dracula'
 elseif filereadable(s:plug) && filereadable(s:molokai)
   colorscheme molokai
+  let g:colorscheme = 'molokai'
 elseif filereadable(s:plug) && filereadable(s:tender)
   colorscheme tender
+  let g:colorscheme = 'tender'
 endif
 
 " ===== for markdown =====
 let g:vim_markdown_fenced_languages = [
-      \ 'html', 'css', 'js=javascript', 'ts=typescript',
-      \ 'c', 'cpp', 'java',
-      \ 'python', 'ruby',
-      \ 'vim', 'sh', 'bash=sh',
-      \ 'toml', 'yaml', 'json', 'ini',
-      \ 'nginx', 'Dockerfile']
+            \ 'html', 'css', 'js=javascript', 'ts=typescript',
+            \ 'c', 'cpp', 'java',
+            \ 'python', 'ruby',
+            \ 'vim', 'sh', 'bash=sh',
+            \ 'toml', 'yaml', 'json', 'ini',
+            \ 'nginx', 'Dockerfile']
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_auto_insert_bullets = 0
 let g:vim_markdown_new_list_item_indent = 0
@@ -115,25 +123,54 @@ augroup PrevimSettings
 augroup END
 
 " ----- for wiki.vim -----
-let g:wiki_root = '~/doc/wiki'
+let g:wiki_root = '~/GoogleGrive/doc/wiki'
 let g:wiki_link_extension = '.md'
 let g:wiki_link_target_type = 'md' "create markdown type link
 let g:wiki_filetypes = ['md', 'adoc', 'wiki']
 let g:wiki_month_names = [
-      \ '1 January', '2 February', '3 March', '4 April',
-      \ '5 May', '6 June', '7 July', '8 August',
-      \ '9 September', '10 October', '11 November', '12 December']
+            \ '1 January', '2 February', '3 March', '4 April',
+            \ '5 May', '6 June', '7 July', '8 August',
+            \ '9 September', '10 October', '11 November', '12 December']
 let g:wiki_journal = {
-      \ 'name': 'journal',
-      \ 'frequency': 'daily',
-      \ 'date_format': {
-      \   'daily': '%Y-%m-%d',
-      \   'weekly': '%Y-w%V',
-      \   'monthly': '%Y-m%m',
-      \ },
-      \ }
+            \ 'name': 'journal',
+            \ 'frequency': 'daily',
+            \ 'date_format': {
+            \   'daily': '%Y-%m-%d',
+            \   'weekly': '%Y-w%V',
+            \   'monthly': '%Y-m%m',
+            \ },
+            \ }
+
+let g:wiki_tag_scan_num_lines = 3
+
+let g:wiki_tag_parsers = [
+            \ g:wiki#tags#default_parser,
+            \ { 'match': {x -> x =~# '^tags: '},
+            \   'parse': {x -> split(matchstr(x, '^tags:\zs.*'), '[, ]\+')}}
+            \]
 
 augroup Wiki
   autocmd!
   autocmd BufNewFile,BufRead *.{md,mkd} nmap <leader><CR> <Plug>(wiki-link-open)
 augroup END
+
+" ----- for mru.vim -----
+let MRU_File = expand('$HOME/.vim_mru_files')
+let MRU_Max_Entries = 1000
+highlight link MRUFileName LineNr
+let MRU_FuzzyMatch = 1
+
+let MRU_Filename_Format = {
+            \ 'formatter': 'fnamemodify(v:val, ":t") . " (" . v:val . ")"',
+            \ 'parser': '(\zs.*\ze)',
+            \ 'syntax': '^.\{-}\ze('
+            \}
+
+" ----- for vim-indent-guides -----
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_exclude_filetypes = ['help', 'markdown']
+"let g:indent_guides_start_level = 2
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=#333231
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3f3e3e
+

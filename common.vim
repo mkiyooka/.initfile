@@ -22,6 +22,7 @@ if has('win32') || has('win64')
   if !has('nvim')
     set shell=cmd.exe
     set makeprg=mingw32-make
+    set pythonthreedll=python39.dll
   endif
 endif
 
@@ -87,4 +88,6 @@ if has('multi_byte_ime') || has('xim')
   set imsearch=0 "Default IME mode on search mode
 endif
 
-set guifont=Migu_1M:h12:cSHIFTJIS:qDRAFT
+if has('gui')
+  set guifont=Migu_1M:h12:cSHIFTJIS:qDRAFT
+endif
