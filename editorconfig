@@ -9,7 +9,7 @@ indent_style = space
 indent_size = 4
 insert_final_newline = true
 
-[*.{html,css,js}]
+[*.{html,css,sass,js,ts,jsx,tsx}]
 indent_style = space
 indent_size = 2
 
@@ -26,3 +26,4 @@ indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
+
