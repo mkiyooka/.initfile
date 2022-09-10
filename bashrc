@@ -1,4 +1,4 @@
-aif [ -z "$PS1" ]; then
+if [ -z "$PS1" ]; then
     return
 fi
 
@@ -73,6 +73,13 @@ case "${OSTYPE}" in
         fi
         if [ -e /usr/local/lib64 ]; then
             export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
+        fi
+        # for Python
+        if [ -e $HOME/.local/venvs ]; then
+            export WORKON_HOME=$HOME/.local/venvs
+        fi
+        if [ -f $HOME/.local/venvs/Pipfile ]; then
+            export PIPENV_PIPFILE=$HOME/.local/venvs/Pipfile # 絶対パスで指定する
         fi
         ;;
     msys*)
