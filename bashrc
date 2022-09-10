@@ -37,6 +37,18 @@ case "${OSTYPE}" in
         [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
         [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
         #brew services start emacs
+        alias emg='emacs'
+        alias em='emacs -nw'
+        alias E='emacsclient -t'
+        alias kill-emacs="emacsclient -e '(kill-emacs)'"
+        [ -s "`brew --prefix`/bin/ctags" ] && alias ctags="`brew --prefix`/bin/ctags"
+        export EDITOR=vim
+        [ -s `command -v direnv` ] && eval "$(direnv hook bash)"
+        # for Golang
+        if [ -s `brew --prefix`'/Cellar/go/' ]; then
+            p=`brew --prefix`'/Cellar/go/'
+            export GOROOT="$p`ls $p`/libexec/"
+        fi
         ;;
     linux*)
         if [ -f $HOME/.initfile/colorrc ]; then
@@ -69,11 +81,6 @@ case "${OSTYPE}" in
         if [ -e $CARGO_HOME/bin ]; then
             export PATH=$CARGO_HOME/bin:$PATH
         fi
-        # for Golang
-        export GOPATH=$XDG_DATA_HOME/go
-        if [ -e $GOPATH/bin ]; then
-            export PATH=$GOPATH/bin:$PATH
-        fi
         # for self-built gcc/g++
         export LD_LIBRARY_PATH=/usr/lib:/usr/lib64
         if [ -e /usr/local/lib ]; then
@@ -81,6 +88,13 @@ case "${OSTYPE}" in
         fi
         if [ -e /usr/local/lib64 ]; then
             export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
+        fi
+        # for Python
+        if [ -e $HOME/.local/venvs ]; then
+            export WORKON_HOME=$HOME/.local/venvs
+        fi
+        if [ -f $HOME/.local/venvs/Pipfile ]; then
+            export PIPENV_PIPFILE=$HOME/.local/venvs/Pipfile # 絶対パスで指定する
         fi
         # ssh-agent
         if [ -z "$SSH_AUTH_SOCK" ]; then
