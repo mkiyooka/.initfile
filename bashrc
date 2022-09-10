@@ -44,6 +44,11 @@ case "${OSTYPE}" in
         [ -s "`brew --prefix`/bin/ctags" ] && alias ctags="`brew --prefix`/bin/ctags"
         export EDITOR=vim
         [ -s `command -v direnv` ] && eval "$(direnv hook bash)"
+        # for Golang
+        if [ -s `brew --prefix`'/Cellar/go/' ]; then
+            p=`brew --prefix`'/Cellar/go/'
+            export GOROOT="$p`ls $p`/libexec/"
+        fi
         ;;
     linux*)
         if [ -f $HOME/.initfile/colorrc ]; then
@@ -75,11 +80,6 @@ case "${OSTYPE}" in
         export CARGO_HOME=$XDG_DATA_HOME/cargo
         if [ -e $CARGO_HOME/bin ]; then
             export PATH=$CARGO_HOME/bin:$PATH
-        fi
-        # for Golang
-        if [ -s `brew --prefix`'/Cellar/go/' ]; then
-            p=`brew --prefix`'/Cellar/go/'
-            export GOROOT="$p`ls $p`/libexec/"
         fi
         # for self-built gcc/g++
         export LD_LIBRARY_PATH=/usr/lib:/usr/lib64
