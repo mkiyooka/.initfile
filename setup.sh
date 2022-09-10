@@ -10,7 +10,8 @@ for BASE in \
 	screenrc \
 	tmux.conf \
 	gitconfig \
-	gitignore; do
+	gitignore \
+	ctags; do
     ln -fsv $PWD/$BASE ~/.$BASE
 done
 
