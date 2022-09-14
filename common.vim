@@ -21,7 +21,7 @@ endif
 if has('win32') || has('win64')
   if !has('nvim')
     set shell=cmd.exe
-    set makeprg=mingw32-make
+    set makeprg=make "or mingw32-make
     set pythonthreedll=python39.dll
   endif
 endif

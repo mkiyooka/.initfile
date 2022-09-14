@@ -111,7 +111,7 @@ case "${OSTYPE}" in
         alias ls='ls --color=auto'
         alias ll='ls -l --color=auto'
         alias la='ls -la --color=auto'
-        alias make='mingw32-make'
+        #alias make='mingw32-make'
 
         # for Rust
         export CARGO_HOME=$XDG_DATA_HOME/cargo
