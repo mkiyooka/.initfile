@@ -123,7 +123,12 @@ augroup PrevimSettings
 augroup END
 
 " ----- for wiki.vim -----
-let g:wiki_root = '~/GoogleGrive/doc/wiki'
+let s:wiki_root = '~/GoogleGrive/doc/wiki'
+if isdirectory(s:wiki_root)
+  let g:wiki_root = s:wiki_root
+else
+  let g:wiki_root = '~/doc/wiki'
+end
 let g:wiki_link_extension = '.md'
 let g:wiki_link_target_type = 'md' "create markdown type link
 let g:wiki_filetypes = ['md', 'adoc', 'wiki']
