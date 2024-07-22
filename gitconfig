@@ -2,7 +2,7 @@
 	name = Masahiro KIYOOKA
 	email = kiyookamasa@gmail.com
 [credential]
-	helper = manager
+	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true
@@ -13,6 +13,7 @@
 [alias]
 	logs = log --graph --date=short --branches --pretty=format:'%C(yellow)%h %C(White)%ad | %C(White)%s%C(Green)%d %C(Red)[%an]'
 	logl = log --graph --date=short --branches --pretty=format:'%C(green)%h %C(white)[%cd] %s %C(red)[%an]%n%C(yellow)%d%n%w(0,4,4)%b'
+	credential-manager = credential-manager-core
 [color]
 	ui = true
 [core]
