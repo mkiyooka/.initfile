@@ -24,3 +24,5 @@ ln -fsv $HOME/.vim/autoload/plug.vim $HOME/.local/share/nvim/site/autoload/plug.
 mkdir -p ~/doc/wiki
 vim -c PlugInstall -c q -c q
 
+# clangd setting
+ln -fsv $PWD/clangd_config.yaml $HOME/.config/clangd/config.yaml
