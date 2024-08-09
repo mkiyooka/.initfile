@@ -20,3 +20,4 @@ fi
 unset __conda_setup
 # <<< conda init <<<
 export PATH="/usr/local/opt/openssl@1.1/bin:$PATH"
+. "$HOME/.cargo/env"

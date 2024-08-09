@@ -21,7 +21,8 @@ endif
 if has('win32') || has('win64')
   if !has('nvim')
     set shell=cmd.exe
-    set makeprg=mingw32-make
+    set makeprg=make "or mingw32-make
+    set pythonthreedll=python39.dll
   endif
 endif
 
@@ -46,7 +47,7 @@ set wrap                "Display long line wrapped.
 set tabstop=4           "Number of spaces that a <Tab> in the file counts for.
 set shiftwidth=4        "Number of spaces to use for each step of (auto)indent.
 set softtabstop=4       "Number of spaces that a <Tab> counts for while performing editing operations.
-set noexpandtab         "expandtab: Use spaces instead of insert <Tab>.
+set expandtab           "expandtab: Use spaces instead of insert <Tab>.
 set autoindent
 set cinoptions+=:0      "Indent with C language
 set foldcolumn=1        "fold column width
@@ -87,4 +88,6 @@ if has('multi_byte_ime') || has('xim')
   set imsearch=0 "Default IME mode on search mode
 endif
 
-set guifont=Migu_1M:h12:cSHIFTJIS:qDRAFT
+if has('gui')
+  set guifont=Migu_1M:h12:cSHIFTJIS:qDRAFT
+endif

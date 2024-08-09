@@ -44,6 +44,11 @@ case "${OSTYPE}" in
         [ -s "`brew --prefix`/bin/ctags" ] && alias ctags="`brew --prefix`/bin/ctags"
         export EDITOR=vim
         [ -s `command -v direnv` ] && eval "$(direnv hook bash)"
+        # for Golang
+        if [ -s `brew --prefix`'/Cellar/go/' ]; then
+            p=`brew --prefix`'/Cellar/go/'
+            export GOROOT="$p`ls $p`/libexec/"
+        fi
         ;;
     linux*)
         if [ -f $HOME/.initfile/colorrc ]; then
@@ -76,11 +81,6 @@ case "${OSTYPE}" in
         if [ -e $CARGO_HOME/bin ]; then
             export PATH=$CARGO_HOME/bin:$PATH
         fi
-        # for Golang
-        if [ -s `brew --prefix`'/Cellar/go/' ]; then
-            p=`brew --prefix`'/Cellar/go/'
-            export GOROOT="$p`ls $p`/libexec/"
-        fi
         # for self-built gcc/g++
         export LD_LIBRARY_PATH=/usr/lib:/usr/lib64
         if [ -e /usr/local/lib ]; then
@@ -88,6 +88,13 @@ case "${OSTYPE}" in
         fi
         if [ -e /usr/local/lib64 ]; then
             export LD_LIBRARY_PATH=/usr/local/lib64:$LD_LIBRARY_PATH
+        fi
+        # for Python
+        if [ -e $HOME/.local/venvs ]; then
+            export WORKON_HOME=$HOME/.local/venvs
+        fi
+        if [ -f $HOME/.local/venvs/Pipfile ]; then
+            export PIPENV_PIPFILE=$HOME/.local/venvs/Pipfile # 絶対パスで指定する
         fi
         # ssh-agent
         if [ -z "$SSH_AUTH_SOCK" ]; then
@@ -104,7 +111,7 @@ case "${OSTYPE}" in
         alias ls='ls --color=auto'
         alias ll='ls -l --color=auto'
         alias la='ls -la --color=auto'
-        alias make='mingw32-make'
+        #alias make='mingw32-make'
 
         # for Rust
         export CARGO_HOME=$XDG_DATA_HOME/cargo
@@ -156,3 +163,4 @@ complete -F _compreply_ssh ssh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
+. "$HOME/.cargo/env"
