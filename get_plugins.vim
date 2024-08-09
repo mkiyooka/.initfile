@@ -9,6 +9,13 @@ else
 endif
 let s:plug = expand(s:plug_install_dir . '/autoload/plug.vim')
 
+if has('nvim')
+    let s:plugged_root = expand('$HOME/.local/share/nvim/plugged')
+else
+    let s:plugged_root = expand('$HOME/.vim/plugged')
+endif
+
+
 if filereadable(s:plug)
     call plug#begin()
     " Colorscheme
@@ -77,24 +84,14 @@ if filereadable(s:plug)
     call plug#end()
 endif
 
-if has('nvim')
-    let s:plugged_root = expand('$HOME/.local/share/nvim/plugged')
-else
-    let s:plugged_root = expand('$HOME/.vim/plugged')
-endif
+let s:nightfox = expand(s:plugged_root . '/nightfox.nvim/colors/nightfox.vim')
+let s:molokai  = expand(s:plugged_root . '/molokai/colors/molokai.vim')
+let s:dracula  = expand(s:plugged_root . '/dracula/colors/dracula.vim')
+let s:tender   = expand(s:plugged_root . '/tender.vim/colors/tender.vim')
 
-if has("win32") || has("win64")
-    let s:molokai = expand(s:plugged_root . '/molokai/colors/molokai.vim')
-    let s:dracula = expand(s:plugged_root . '/dracula/colors/dracula.vim')
-    let s:tender  = expand(s:plugged_root . '/tender.vim/colors/tender.vim')
-else
-    let s:molokai = expand(s:plugged_root . '/molokai/colors/molokai.vim')
-    let s:dracula = expand(s:plugged_root . '/dracula/colors/dracula.vim')
-    let s:tender  = expand(s:plugged_root . '/tender.vim/colors/tender.vim')
-endif
-
-if has("nvim")
+if has("nvim") && filereadable(s:plug) && filereadable(s:nightfox)
     colorscheme nightfox
+    let g:colorscheme = 'nightfox'
 elseif has('gui') && filereadable(s:plug) && filereadable(s:dracula)
     let g:dracula_italic = 0
     colorscheme dracula
