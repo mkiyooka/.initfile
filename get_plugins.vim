@@ -15,7 +15,6 @@ else
     let s:plugged_root = expand('$HOME/.vim/plugged')
 endif
 
-
 if filereadable(s:plug)
     call plug#begin()
     " Colorscheme
@@ -71,6 +70,7 @@ if filereadable(s:plug)
     Plug 'kana/vim-operator-user'
     " --- Programming support ---
     " Help maintain consistent coding styles
+    Plug 'thinca/vim-quickrun'
     Plug 'editorconfig/editorconfig-vim'
     " Lint
     " Plug 'w0rp/ale' "Asynchronous Lint Engine
@@ -84,6 +84,7 @@ if filereadable(s:plug)
     call plug#end()
 endif
 
+" apply colorscheme
 let s:nightfox = expand(s:plugged_root . '/nightfox.nvim/colors/nightfox.vim')
 let s:molokai  = expand(s:plugged_root . '/molokai/colors/molokai.vim')
 let s:dracula  = expand(s:plugged_root . '/dracula/colors/dracula.vim')
@@ -231,3 +232,32 @@ autocmd FileType c,cpp,objc map <buffer><Leader>= <Plug>(operator-clang-format)
 
 " for rust
 let g:rustfmt_autosave = 1
+
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+let g:quickrun_config._ = {
+    \ 'outputter/buffer/opener': 'new',
+    \ 'outputter/buffer/into': 1,
+    \ 'outputter/buffer/close_on_empty': 1,
+    \ }
+
+augroup rust
+    autocmd!
+    autocmd BufNewFile,BufRead *.crs setf rust
+    autocmd BufNewFile,BufRead *.rs  let g:quickrun_config.rust = {
+        \'exec' : 'cargo run %o', 'hook/shebang/enable': 0,}
+    autocmd BufNewFile,BufRead *.crs let g:quickrun_config.rust = {'exec' : 'cargo script %s -- %a'}
+augroup END
+augroup cpp
+    autocmd!
+    autocmd BufNewFile,BufRead *.cpp  let g:quickrun_config.cpp = {'command': 'make', 'exec': ['%c'] }
+augroup END
+
+augroup quickrun
+    autocmd!
+    autocmd FileType quickrun syntax match qrError "\v^error:"
+    autocmd FileType quickrun syntax match qrWarning "\v^warning:"
+    autocmd FileType quickrun syntax match qrPosition "\v\^+ .+:"
+    autocmd FileType quickrun hi link qrError Error
+    autocmd FileType quickrun hi qrWarning ctermfg=yellow guifg=#D7B455
+    autocmd FileType quickrun hi qrPosition ctermfg=darkcyan guifg=#6C9AE9
+augroup END
