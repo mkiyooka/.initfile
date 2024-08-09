@@ -163,4 +163,3 @@ complete -F _compreply_ssh ssh
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-export XDG_CONFIG_HOME=$HOME/.config
