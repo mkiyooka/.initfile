@@ -8,6 +8,11 @@ if filereadable(s:rc_mapping)
   execute 'source' s:rc_mapping
 endif
 
+let s:rc_switch_buffer = expand('$HOME/.initfile/switch_buffer.vim')
+if filereadable(s:rc_switch_buffer)
+  execute 'source' s:rc_switch_buffer
+endif
+
 let s:rc_gvim_mapping = expand('$HOME/.initfile/gvim_mapping.vim')
 if has('gui') && filereadable(s:rc_gvim_mapping)
   execute 'source' s:rc_gvim_mapping

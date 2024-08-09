@@ -16,6 +16,9 @@ if filereadable(s:plug)
     Plug 'jacoborus/tender.vim'
     Plug 'mkiyooka/molokai'
     Plug 'nathanaelkane/vim-indent-guides'
+    if has('nvim')
+        Plug 'EdenEast/nightfox.nvim'
+    endif
 
     " Appearance of vim
     " Status line styler
@@ -58,7 +61,7 @@ if filereadable(s:plug)
     Plug 'lambdalisue/fern-bookmark.vim'
     Plug 'lambdalisue/fern-git-status.vim'
     Plug 'yuki-yano/fern-preview.vim'
-
+    Plug 'kana/vim-operator-user'
     " --- Programming support ---
     " Help maintain consistent coding styles
     Plug 'editorconfig/editorconfig-vim'
@@ -67,8 +70,8 @@ if filereadable(s:plug)
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
     Plug 'piec/vim-lsp-clangd'
-    Plug 'rhysd/vim-clang-format', { 'for': ['c', 'c++'] }
-    Plug 'justmao945/vim-clang', { 'for': ['c', 'c++'] }
+    Plug 'rhysd/vim-clang-format', { 'for': ['c', 'cpp'] }
+    "Plug 'justmao945/vim-clang', { 'for': ['c', 'cpp'] }
     Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
     Plug 'neomake/neomake'
     call plug#end()
@@ -90,7 +93,9 @@ else
     let s:tender  = expand(s:plugged_root . '/tender.vim/colors/tender.vim')
 endif
 
-if has('gui') && filereadable(s:plug) && filereadable(s:dracula)
+if has("nvim")
+    colorscheme nightfox
+elseif has('gui') && filereadable(s:plug) && filereadable(s:dracula)
     let g:dracula_italic = 0
     colorscheme dracula
     let g:colorscheme = 'dracula'
@@ -196,14 +201,14 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=#3f3e3e
 
 " ----- for vim-clang -----
 
-let g:clang_c_options = "-std=gnu11 -I CLI11/include"
-let g:clang_cpp_options = "-std=c++11 -stdlib=libc++ -I./CLI11/include"
+"let g:clang_c_options = "-std=gnu11 -I./CLI11/include"
+"let g:clang_cpp_options = "-std=c++11 -stdlib=libc++ -I./CLI11/include"
 
 " ----- for lsp -----
 
 let g:lsp_settings = {
             \ 'clangd': {
-            \   'cmd': ['clangd', '--enable-config']
+            \   'cmd': ['clangd', '--enable-config', '--clang-tidy']
             \ }
             \}
 
@@ -214,3 +219,18 @@ if executable('clangd')
                 \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
                 \ })
 endif
+
+" ----- for vim-clang-format -----
+"let g:clang_format#style_options = {
+"            \ "AccessModifierOffset" : -4,
+"            \ "AllowShortIfStatementsOnASingleLine" : "true",
+"            \ "AlwaysBreakTemplateDeclarations" : "true",
+"            \ "Standard" : "C++11"}
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,objc map <buffer><Leader>= <Plug>(operator-clang-format)
+
+" for rust
+let g:rustfmt_autosave = 1
