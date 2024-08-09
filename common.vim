@@ -47,7 +47,7 @@ set wrap                "Display long line wrapped.
 set tabstop=4           "Number of spaces that a <Tab> in the file counts for.
 set shiftwidth=4        "Number of spaces to use for each step of (auto)indent.
 set softtabstop=4       "Number of spaces that a <Tab> counts for while performing editing operations.
-set noexpandtab         "expandtab: Use spaces instead of insert <Tab>.
+set expandtab           "expandtab: Use spaces instead of insert <Tab>.
 set autoindent
 set cinoptions+=:0      "Indent with C language
 set foldcolumn=1        "fold column width
