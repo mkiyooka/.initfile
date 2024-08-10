@@ -1,3 +1,4 @@
+# vim: ft=gitconfig
 [user]
 	name = Masahiro KIYOOKA
 	email = kiyookamasa@gmail.com
@@ -28,5 +29,3 @@
 	default = simple
 [http]
 	postBuffer = 524288000
-
-# vim: ft=gitconfig
