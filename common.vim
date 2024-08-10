@@ -2,30 +2,6 @@ if has('win32') || has('win64')
   set runtimepath^=$HOME/.vim
 endif
 
-let s:gps = expand('$HOME/.initfile/get_plugins.vim')
-if filereadable(s:gps)
-  execute 'source' s:gps
-endif
-
-
-if has('unix')
-  "for Unix
-  set shell=/bin/bash
-  set makeprg=make
-endif
-if has('mac')
-  "for Mac
-  set shell=/bin/bash
-  set makeprg=make
-endif
-if has('win32') || has('win64')
-  if !has('nvim')
-    set shell=cmd.exe
-    set makeprg=make "or mingw32-make
-    set pythonthreedll=python39.dll
-  endif
-endif
-
 "-------------------------------------------------------------------------------
 set visualbell t_vb= "disable beep
 set noerrorbells "disable beep
@@ -78,6 +54,12 @@ set termencoding=
 set fileencoding=utf-8
 set fileencodings=utf-8,iso-2022-jp,euc-jp,cp932
 
+set conceallevel=0
+set concealcursor=n
+set cursorline
+set cursorlineopt=both
+set cursorbind
+
 "-------------------------------------------------------------------------------
 "Change cursor color with IME mode.
 if has('multi_byte_ime') || has('xim')
@@ -88,6 +70,62 @@ if has('multi_byte_ime') || has('xim')
   set imsearch=0 "Default IME mode on search mode
 endif
 
-if has('gui')
-  set guifont=Migu_1M:h12:cSHIFTJIS:qDRAFT
+if has('unix')
+  "for Unix
+  set shell=/bin/bash
+  set makeprg=make
 endif
+if has('mac')
+  "for Mac
+  set shell=/bin/bash
+  set makeprg=make
+endif
+if has('win32') || has('win64')
+  if !has('nvim')
+    set shell=cmd.exe
+    set makeprg=make "or mingw32-make
+    set pythonthreedll=python39.dll
+  endif
+endif
+
+command -bar QfTodo call s:qf_todo()
+
+fu s:qf_todo() abort
+    sil vim /@\u\+/gj %
+    let curfile = expand('%:p')
+    call setqflist([], 'r', #{
+        \ lines : getqflist()->map('curfile .. "|" .. v:val.lnum .. " " .. v:val.col .. "|" .. v:val.text'),
+        \ efm : '%f|%l %c|%m',
+        \ quickfixtextfunc : 's:quickfixtextfunc',
+        \ })
+    copen
+endfu
+
+fu s:quickfixtextfunc(info) abort
+    if a:info.quickfix
+        let qfl = getqflist(#{id: a:info.id, items: 1}).items
+    else
+        let qfl = getloclist(a:info.winid, #{id: a:info.id, items: 1}).items
+    endif
+    let l = []
+    for idx in range(a:info.start_idx - 1, a:info.end_idx - 1)
+        let e = qfl[idx]
+        let fname = bufname(e.bufnr)->fnamemodify(':t')
+        let displayed = printf('%s|%d col %d|%s| %s',
+            \ fname,
+            \ e.lnum,
+            \ e.col,
+            \ matchstr(e.text, '@\zs\u\+'),
+            \ e.text
+            \ )
+        call add(l, displayed)
+    endfor
+    call sort(l, function('s:MySort'))
+    return l
+endfu
+
+fu s:MySort(i, j) abort
+    let s1 = split(a:i, '|')[3]
+    let s2 = split(a:j, '|')[3]
+    return s1 ==# s2 ? 0 : s1 ># s2 ? 1 : -1
+endfu
