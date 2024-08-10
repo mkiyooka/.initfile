@@ -18,7 +18,7 @@ function! s:DefaultStyle() abort
     set lines=35
     let s:fDemoStyle=0
 endfunction
-command! DefaultStyle :call s:DefaultStyle()
+command! -nargs=0 DefaultStyle :call s:DefaultStyle()
 
 " ----- Projector ----
 function! s:DemoStyle() abort
@@ -28,9 +28,9 @@ function! s:DemoStyle() abort
     set lines=30
     let s:fDemoStyle=1
 endfunction
-command! DemoStyle :call s:DemoStyle()
+command! -nargs=0 DemoStyle :call s:DemoStyle()
 
-call s:DefaultStyle() abort
+call s:DefaultStyle()
 function! s:ToggleDisplayStyle()
     if s:fDemoStyle == 1
         call s:DefaultStyle()
