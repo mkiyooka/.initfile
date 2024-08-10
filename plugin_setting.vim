@@ -111,7 +111,7 @@ let g:quickrun_config._ = {
     \ 'outputter/buffer/close_on_empty': 1,
     \ }
 
-augroup quickrun
+augroup quickrun-setting
     autocmd!
     autocmd BufNewFile,BufRead *.crs setf rust
     autocmd BufNewFile,BufRead *.rs  let g:quickrun_config.rust = {
@@ -126,7 +126,7 @@ augroup quickrun
     autocmd FileType quickrun hi qrPosition ctermfg=darkcyan guifg=#6C9AE9
 augroup END
 
-augroup quickfix
+augroup quickfix-setting
     autocmd!
     autocmd FileType qf syntax match qfError "error"
     autocmd FileType qf syntax match qfWarning "warning"
@@ -139,13 +139,15 @@ nnoremap <leader>f :<c-u>Fern %:h -reveal=% -drawer -toggle<CR>
 nnoremap <leader>F :<c-u>Fern . -reveal=% -drawer -toggle<CR>
 
 function! s:fern_settings() abort
-  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
-  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
-  nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
-  nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+    nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+    nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+    nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+    nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
 endfunction
 
 augroup fern-settings
-  autocmd!
-  autocmd FileType fern call s:fern_settings()
+    autocmd!
+    autocmd FileType fern call s:fern_settings()
+    autocmd FileType fern setlocal norelativenumber
+    autocmd FileType fern setlocal nonumber
 augroup END
