@@ -87,7 +87,7 @@ if filereadable(s:plug)
     Plug 'Vimjas/vim-python-pep8-indent', { 'for': ['python'] }
     Plug 'neomake/neomake'
     Plug 'vim-test/vim-test'
-  call plug#end()
+    call plug#end()
 endif
 
 " ----- apply colorscheme -----
