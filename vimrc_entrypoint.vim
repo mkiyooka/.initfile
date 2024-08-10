@@ -1,6 +1,7 @@
-let s:common = expand('$HOME/.initfile/common.vim')
-if filereadable(s:common)
-    execute 'source' s:common
+" --------------- common setting ---------------
+let s:rc_common = expand('$HOME/.initfile/common.vim')
+if filereadable(s:rc_common)
+    execute 'source' s:rc_common
 endif
 
 let s:rc_mapping = expand('$HOME/.initfile/mapping.vim')
@@ -8,36 +9,29 @@ if filereadable(s:rc_mapping)
     execute 'source' s:rc_mapping
 endif
 
-let s:rc_switch_buffer = expand('$HOME/.initfile/switch_buffer.vim')
-if filereadable(s:rc_switch_buffer)
-    execute 'source' s:rc_switch_buffer
+let s:rc_terminal = expand('$HOME/.initfile/terminal_setting.vim')
+if filereadable(s:rc_terminal)
+    execute 'source' s:rc_terminal
 endif
 
-let s:rc_gvim_mapping = expand('$HOME/.initfile/gvim_mapping.vim')
-if has('gui') && filereadable(s:rc_gvim_mapping)
-    execute 'source' s:rc_gvim_mapping
+" --------------- configuration for plugins ---------------
+let s:rc_plugins = expand('$HOME/.initfile/get_plugins.vim')
+if filereadable(s:rc_plugins)
+    execute 'source' s:rc_plugins
 endif
 
-let s:rc_plug_mapping = expand('$HOME/.initfile/plug_mapping.vim')
-if filereadable(s:rc_plug_mapping)
-    execute 'source' s:rc_plug_mapping
+let s:rc_plugin_setting = expand('$HOME/.initfile/plugin_setting.vim')
+if filereadable(s:rc_plugin_setting)
+    execute 'source' s:rc_plugin_setting
 endif
 
-if has('gui')
-    set lines=40
-    set columns=100
-
-    " GUI menu bar is not present
-    set guioptions=
-
-    " encode setting for menu
-    source $VIMRUNTIME/delmenu.vim
-    set langmenu=ja_jp.utf-8
-    source $VIMRUNTIME/menu.vim
+" --------------- configuration for vim with gui ---------------
+if has('gui_running')
+    let s:gui_setting = expand('$HOME/.initfile/gui_setting.vim')
+    if filereadable(s:gui_setting)
+        execute 'source' s:gui_setting
+    endif
 endif
-
-set conceallevel=0
-set concealcursor=n
 
 "augroup vimrc-local
 "    autocmd!

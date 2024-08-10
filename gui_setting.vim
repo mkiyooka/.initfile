@@ -1,6 +1,18 @@
-" -----
-" Display
-" -----
+" ----- window, menu and font -----
+set lines=40
+set columns=100
+
+set guifont=Migu_1M:h11
+
+" GUI menu bar is not present
+set guioptions=
+
+" encode setting for menu
+source $VIMRUNTIME/delmenu.vim
+set langmenu=ja_jp.utf-8
+source $VIMRUNTIME/menu.vim
+
+" ----- Display ----
 function! DefaultStyle()
     set guifont=Migu_1M:h11
     set guifontwide=Migu_1M:h11
@@ -11,9 +23,7 @@ function! DefaultStyle()
 endfunction
 command! DefaultStyle :call DefaultStyle()
 
-" -----
-" Projector
-" -----
+" ----- Projector ----
 function! DemoStyle()
     set guifont=Migu_1M:h18
     set guifontwide=Migu_1M:h18
