@@ -18,4 +18,6 @@ inoremap <silent> <C-L>t. <C-R>=strftime("%Y.%m.%d %H:%M")<CR>
 inoremap <silent> <C-L>t/ <C-R>=strftime("%Y/%m/%d %H:%M")<CR>
 inoremap <silent> <C-L>t- <C-R>=strftime("%Y-%m-%d %H:%M")<CR>
 
+"@TODO
 nnoremap <leader>T :<C-u>tablast <bar> tabnew <C-e>
+nnoremap <leader>Q :<C-u>QfTodo<CR>
