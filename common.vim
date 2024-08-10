@@ -1,5 +1,5 @@
 if has('win32') || has('win64')
-  set runtimepath^=$HOME/.vim
+    set runtimepath^=$HOME/.vim
 endif
 
 "-------------------------------------------------------------------------------
@@ -63,29 +63,29 @@ set cursorbind
 "-------------------------------------------------------------------------------
 "Change cursor color with IME mode.
 if has('multi_byte_ime') || has('xim')
-  "Cursor color when IME is ON
-  highlight Cursor guibg=white guifg=black
-  highlight CursorIM guibg=lightred guifg=black
-  set iminsert=0 "Default IME mode on insert mode
-  set imsearch=0 "Default IME mode on search mode
+    "Cursor color when IME is ON
+    highlight Cursor guibg=white guifg=black
+    highlight CursorIM guibg=lightred guifg=black
+    set iminsert=0 "Default IME mode on insert mode
+    set imsearch=0 "Default IME mode on search mode
 endif
 
 if has('unix')
-  "for Unix
-  set shell=/bin/bash
-  set makeprg=make
+    "for Unix
+    set shell=/bin/bash
+    set makeprg=make
 endif
 if has('mac')
-  "for Mac
-  set shell=/bin/bash
-  set makeprg=make
+    "for Mac
+    set shell=/bin/bash
+    set makeprg=make
 endif
 if has('win32') || has('win64')
-  if !has('nvim')
-    set shell=cmd.exe
-    set makeprg=make "or mingw32-make
-    set pythonthreedll=python39.dll
-  endif
+    if !has('nvim')
+        set shell=cmd.exe
+        set makeprg=make "or mingw32-make
+        set pythonthreedll=python39.dll
+    endif
 endif
 
 command -bar QfTodo call s:qf_todo()
@@ -94,10 +94,10 @@ fu s:qf_todo() abort
     sil vim /@\u\+/gj %
     let curfile = expand('%:p')
     call setqflist([], 'r', #{
-        \ lines : getqflist()->map('curfile .. "|" .. v:val.lnum .. " " .. v:val.col .. "|" .. v:val.text'),
-        \ efm : '%f|%l %c|%m',
-        \ quickfixtextfunc : 's:quickfixtextfunc',
-        \ })
+                \ lines : getqflist()->map('curfile .. "|" .. v:val.lnum .. " " .. v:val.col .. "|" .. v:val.text'),
+                \ efm : '%f|%l %c|%m',
+                \ quickfixtextfunc : 's:quickfixtextfunc',
+                \ })
     copen
 endfu
 
@@ -112,12 +112,12 @@ fu s:quickfixtextfunc(info) abort
         let e = qfl[idx]
         let fname = bufname(e.bufnr)->fnamemodify(':t')
         let displayed = printf('%s|%d col %d|%s| %s',
-            \ fname,
-            \ e.lnum,
-            \ e.col,
-            \ matchstr(e.text, '@\zs\u\+'),
-            \ e.text
-            \ )
+                    \ fname,
+                    \ e.lnum,
+                    \ e.col,
+                    \ matchstr(e.text, '@\zs\u\+'),
+                    \ e.text
+                    \ )
         call add(l, displayed)
     endfor
     call sort(l, function('s:MySort'))
