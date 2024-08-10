@@ -90,6 +90,27 @@ if filereadable(s:plug)
   call plug#end()
 endif
 
+" ----- apply colorscheme -----
+let s:nightfox = expand(s:plugged_root . '/nightfox.nvim/colors/nightfox.vim')
+let s:molokai  = expand(s:plugged_root . '/molokai/colors/molokai.vim')
+let s:dracula  = expand(s:plugged_root . '/dracula/colors/dracula.vim')
+let s:tender   = expand(s:plugged_root . '/tender.vim/colors/tender.vim')
+
+if has("nvim") && filereadable(s:plug) && filereadable(s:nightfox)
+    colorscheme nightfox
+    let g:colorscheme = 'nightfox'
+elseif has('gui') && filereadable(s:plug) && filereadable(s:dracula)
+    let g:dracula_italic = 0
+    colorscheme dracula
+    let g:colorscheme = 'dracula'
+elseif filereadable(s:plug) && filereadable(s:molokai)
+    colorscheme molokai
+    let g:colorscheme = 'molokai'
+elseif filereadable(s:plug) && filereadable(s:tender)
+    colorscheme tender
+    let g:colorscheme = 'tender'
+endif
+
 if has('nvim')
   " set to 1, nvim will open the preview window after entering the markdown buffer
   " default: 0
@@ -191,26 +212,6 @@ if has('nvim')
   let g:mkdp_theme = 'dark'
 endif
 
-" apply colorscheme
-let s:nightfox = expand(s:plugged_root . '/nightfox.nvim/colors/nightfox.vim')
-let s:molokai  = expand(s:plugged_root . '/molokai/colors/molokai.vim')
-let s:dracula  = expand(s:plugged_root . '/dracula/colors/dracula.vim')
-let s:tender   = expand(s:plugged_root . '/tender.vim/colors/tender.vim')
-
-if has("nvim") && filereadable(s:plug) && filereadable(s:nightfox)
-    colorscheme nightfox
-    let g:colorscheme = 'nightfox'
-elseif has('gui') && filereadable(s:plug) && filereadable(s:dracula)
-    let g:dracula_italic = 0
-    colorscheme dracula
-    let g:colorscheme = 'dracula'
-elseif filereadable(s:plug) && filereadable(s:molokai)
-    colorscheme molokai
-    let g:colorscheme = 'molokai'
-elseif filereadable(s:plug) && filereadable(s:tender)
-    colorscheme tender
-    let g:colorscheme = 'tender'
-endif
 
 " ===== for markdown =====
 let g:vim_markdown_fenced_languages = [
