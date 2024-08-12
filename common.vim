@@ -70,17 +70,15 @@ if has('multi_byte_ime') || has('xim')
     set imsearch=0 "Default IME mode on search mode
 endif
 
-if has('unix')
-    "for Unix
-    set shell=/bin/bash
-    set makeprg=make
-endif
-if has('mac')
+if has('osxdarwin')
     "for Mac
     set shell=/bin/bash
     set makeprg=make
-endif
-if has('win32') || has('win64')
+elseif has('unix')
+    "for Unix
+    set shell=/bin/bash
+    set makeprg=make
+elseif has('win32') || has('win64')
     if !has('nvim')
         set shell=cmd.exe
         set makeprg=make "or mingw32-make
