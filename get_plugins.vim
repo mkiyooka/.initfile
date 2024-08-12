@@ -96,7 +96,7 @@ if exists('g:plug_home')
     let s:dracula  = expand(g:plug_home . '/dracula/colors/dracula.vim')
     let s:tender   = expand(g:plug_home . '/tender.vim/colors/tender.vim')
 
-    if has("nvim") && filereadable(s:nightfox)
+    if has('nvim') && filereadable(s:nightfox)
         colorscheme nightfox
         let g:colorscheme = 'nightfox'
     elseif has('gui_running') && filereadable(s:dracula)

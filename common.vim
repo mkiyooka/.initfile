@@ -1,4 +1,19 @@
-if has('win32') || has('win64')
+if has('osxdarwin')
+    let g:os = 'osx'
+elseif has('unix')
+    let lines = readfile('/proc/version')
+    if lines[0] =~ 'Microsoft'
+        let g:os = 'wsl'
+    elseif has('windows')
+        let g:os = 'win-mingw'
+    elseif has('linux')
+        let g:os = 'linux'
+    endif
+elseif has('windows') || has('win64') || has('win32')
+    let g:os = 'windows'
+endif
+
+if g:os == 'windows'
     set runtimepath^=$HOME/.vim
 endif
 
@@ -70,15 +85,15 @@ if has('multi_byte_ime') || has('xim')
     set imsearch=0 "Default IME mode on search mode
 endif
 
-if has('osxdarwin')
+if g:os == 'osx'
     "for Mac
     set shell=/bin/bash
     set makeprg=make
-elseif has('unix')
+elseif g:os == 'linux'
     "for Unix
     set shell=/bin/bash
     set makeprg=make
-elseif has('win32') || has('win64')
+elseif g:os == 'windows'
     if !has('nvim')
         set shell=cmd.exe
         set makeprg=make "or mingw32-make

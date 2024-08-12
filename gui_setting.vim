@@ -1,5 +1,5 @@
 " ----- window, menu and font -----
-if has('gui_running') && has('osxdarwin')
+if g:os == 'osx'
     set antialias
 endif
 " GUI menu bar is not present

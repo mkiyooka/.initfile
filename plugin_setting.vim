@@ -24,16 +24,14 @@ let g:vim_markdown_strikethrough = 1
 let g:vmt_list_item_char = '-'
 
 " ----- for previm -----
-if has('osxdarwin')
+if g:os == 'osx'
     let g:previm_open_cmd = 'open -a Google\ Chrome'
-elseif has('unix')
-    " check WSL or not
-    let lines = readfile("/proc/version")
-    if lines[0] =~ "Microsoft"
-        let g:previm_open_cmd = '/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
-        let g:previm_wsl_mode = 1
-    endif
-elseif has('win32') || has('win64')
+elseif g:os == 'wsl'
+    let g:previm_open_cmd = '/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
+    let g:previm_wsl_mode = 1
+elseif g:os == 'win-mingw'
+    let g:previm_open_cmd = '/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
+elseif g:os == 'windows'
     let g:previm_open_cmd = 'start Chrome'
 endif
 let g:previm_enable_realtime = 1

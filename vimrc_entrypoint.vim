@@ -1,4 +1,9 @@
 " --------------- common setting ---------------
+if exists('g:vimrc_sourced')
+    finish
+endif
+let g:vimrc_sourced = 1
+
 let s:rc_common = expand('$HOME/.initfile/common.vim')
 if filereadable(s:rc_common)
     execute 'source' s:rc_common
@@ -26,9 +31,10 @@ if filereadable(s:rc_plugin_setting)
 endif
 
 " --------------- configuration for vim with gui ---------------
-if has('gui_running')
-    let s:gui_setting = expand('$HOME/.initfile/gui_setting.vim')
-    if filereadable(s:gui_setting)
-        execute 'source' s:gui_setting
-    endif
+if !has('gui_running')
+    finish
+endif
+let s:gui_setting = expand('$HOME/.initfile/gui_setting.vim')
+if filereadable(s:gui_setting)
+    execute 'source' s:gui_setting
 endif
