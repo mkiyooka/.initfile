@@ -24,9 +24,9 @@ let g:vim_markdown_strikethrough = 1
 let g:vmt_list_item_char = '-'
 
 " ----- for previm -----
-if has('unix')
-elseif has('mac')
-    let g:previm_open_cmd = 'open -a "Google Chrome"'
+if has('osxdarwin')
+    let g:previm_open_cmd = 'open -a Google\ Chrome'
+elseif has('unix')
 elseif has('win32') || has('win64')
     let g:previm_open_cmd = 'start Chrome'
 endif
