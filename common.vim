@@ -129,3 +129,15 @@ fu s:MySort(i, j) abort
     let s2 = split(a:j, '|')[3]
     return s1 ==# s2 ? 0 : s1 ># s2 ? 1 : -1
 endfu
+
+augroup vimrc-local
+    autocmd!
+    autocmd BufNewFile,BufReadPost * call s:vimrc_local(expand('<afile>:p:h'))
+augroup END
+
+function! s:vimrc_local(loc)
+    let files = findfile('.vimrc.local', escape(a:loc, ' \') . ';', -1)
+    for i in reverse(filter(files, 'filereadable(v:val)'))
+        source `=i`
+    endfor
+endfunction
