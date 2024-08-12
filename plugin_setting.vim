@@ -28,8 +28,9 @@ if has('unix')
 elseif has('mac')
     let g:previm_open_cmd = 'open -a "Google Chrome"'
 elseif has('win32') || has('win64')
-    let g:previm_open_cmd = '"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"'
+    let g:previm_open_cmd = 'start Chrome'
 endif
+let g:previm_enable_realtime = 1
 
 augroup PrevimSettings
     autocmd!
