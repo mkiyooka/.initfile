@@ -27,6 +27,12 @@ let g:vmt_list_item_char = '-'
 if has('osxdarwin')
     let g:previm_open_cmd = 'open -a Google\ Chrome'
 elseif has('unix')
+    " check WSL or not
+    let lines = readfile("/proc/version")
+    if lines[0] =~ "Microsoft"
+        let g:previm_open_cmd = '/mnt/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe'
+        let g:previm_wsl_mode = 1
+    endif
 elseif has('win32') || has('win64')
     let g:previm_open_cmd = 'start Chrome'
 endif
