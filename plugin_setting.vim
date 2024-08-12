@@ -26,9 +26,9 @@ let g:vmt_list_item_char = '-'
 " ----- for previm -----
 if has('unix')
 elseif has('mac')
-    let g:previm_open_cmd = 'open -a Google\ Chrome'
+    let g:previm_open_cmd = 'open -a "Google Chrome"'
 elseif has('win32') || has('win64')
-    let g:previm_open_cmd = 'C:\\Program\ Files\ (x86)\\Google\\Chrome\\Application\\chrome.exe'
+    let g:previm_open_cmd = '"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"'
 endif
 
 augroup PrevimSettings
