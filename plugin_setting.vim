@@ -56,11 +56,12 @@ let g:wiki_month_names = [
 "            \ }
 let g:wiki_tag_scan_num_lines = 3
 
-augroup Wiki
-    autocmd!
-    autocmd BufNewFile,BufRead *.{md,mkd} nmap <leader><CR> <Plug>(wiki-link-open)
-augroup END
-
+"augroup Wiki
+"    autocmd!
+"    autocmd BufNewFile,BufRead *.{md,mkd} set filetype=markdown
+"    "autocmd BufNewFile,BufRead *.{md,mkd} nmap <leader><CR> <Plug>(wiki-link-open)
+"augroup END
+"
 " ----- for mru.vim -----
 let MRU_File = expand('$HOME/.vim_mru_files')
 let MRU_Max_Entries = 1000
@@ -79,7 +80,7 @@ let g:indent_guides_auto_colors = 1
 let g:indent_guides_color_change_percent = 4
 let g:indent_guides_exclude_filetypes = ['help', 'markdown']
 
-" ----- for lsp -----
+" ----- for lsp-vim -----
 let g:lsp_settings = { 'clangd': { 'cmd': ['clangd', '--enable-config', '--clang-tidy'] } }
 
 if executable('clangd')
@@ -91,45 +92,55 @@ if executable('clangd')
 endif
 
 " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd FileType c,cpp,objc map <buffer><Leader>= <Plug>(operator-clang-format)
+function! s:clang_format_settings() abort
+    nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+    vnoremap <buffer><Leader>cf :ClangFormat<CR>
+    map <buffer><Leader>= <Plug>(operator-clang-format)
+endfunction
 
-" for rust
-let g:rustfmt_autosave = 1
-autocmd FileType rust nnoremap <buffer><Leader>r :<C-u>make run<CR>
-autocmd FileType rust nnoremap <buffer><Leader>b :<C-u>make build<CR>
-autocmd FileType rust nnoremap <buffer><Leader>t :<C-u>make test<CR>
-autocmd FileType rust nnoremap <buffer><Leader>o :<C-u>copen<CR>
-
-let g:quickrun_config = get(g:, 'quickrun_config', {})
-let g:quickrun_config._ = {
-    \ 'outputter/buffer/opener': 'new',
-    \ 'outputter/buffer/into': 1,
-    \ 'outputter/buffer/close_on_empty': 1,
-    \ }
-
-augroup quickrun-setting
-    autocmd!
-    autocmd BufNewFile,BufRead *.crs setf rust
-    autocmd BufNewFile,BufRead *.rs  let g:quickrun_config.rust = {
-        \'exec' : 'cargo run %o', 'hook/shebang/enable': 0,}
-    autocmd BufNewFile,BufRead *.crs let g:quickrun_config.rust = {'exec' : 'cargo script %s -- %a'}
-    autocmd BufNewFile,BufRead *.cpp  let g:quickrun_config.cpp = {'command': 'make', 'exec': ['%c'] }
-    autocmd FileType quickrun syntax match qrError "\v^error:"
-    autocmd FileType quickrun syntax match qrWarning "\v^warning:"
-    autocmd FileType quickrun syntax match qrPosition "\v\^+ .+:"
-    autocmd FileType quickrun hi link qrError Error
-    autocmd FileType quickrun hi qrWarning ctermfg=yellow guifg=#D7B455
-    autocmd FileType quickrun hi qrPosition ctermfg=darkcyan guifg=#6C9AE9
+augroup clang-format-settings
+    autocmd! *
+    autocmd FileType c,cpp,objc call s:clang_format_settings() 
 augroup END
 
-augroup quickfix-setting
-    autocmd!
-    autocmd FileType qf syntax match qfError "error"
-    autocmd FileType qf syntax match qfWarning "warning"
-    autocmd FileType qf hi link qfError Error
-    autocmd FileType qf hi qfWarning ctermfg=yellow guifg=#D7B455
+" for rust
+function! s:rust_vim_settings() abort
+    let g:rustfmt_autosave = 1
+    nnoremap <buffer>mr :<C-u>make run<CR>
+    nnoremap <buffer>mm :<C-u>make build<CR>
+    nnoremap <buffer>mt :<C-u>make test<CR>
+    nnoremap <buffer>mo :<C-u>copen<CR>
+endfunction
+
+augroup rust-vim-settings
+    autocmd! *
+    autocmd FileType rust call s:rust_vim_settings()
+augroup END
+
+function! s:quickrun_settings() abort
+    syntax match qrError "\v^error:"
+    syntax match qrWarning "\v^warning:"
+    syntax match qrPosition "\v\^+ .+:"
+    hi link qrError Error
+    hi qrWarning ctermfg=yellow guifg=#D7B455
+    hi qrPosition ctermfg=darkcyan guifg=#6C9AE9
+endfunction END
+
+augroup quickrun-settings
+    autocmd! *
+    autocmd FileType quickrun s:quickrun_settings()
+augroup END
+
+function! s:quickfix_settings() abort
+    syntax match qfError "error"
+    syntax match qfWarning "warning"
+    hi link qfError Error
+    hi qfWarning ctermfg=yellow guifg=#D7B455
+endfunction
+
+augroup quickfix-settings
+    autocmd! *
+    autocmd FileType qf s:quickfix_settings()
 augroup END
 
 " ----- for fern -----
@@ -141,13 +152,14 @@ function! s:fern_settings() abort
     nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
     nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
     nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+    nnoremap      <buffer> q     :<c-u>quit<cr>
+    setlocal norelativenumber
+    setlocal nonumber
 endfunction
 
 augroup fern-settings
-    autocmd!
+    autocmd! *
     autocmd FileType fern call s:fern_settings()
-    autocmd FileType fern setlocal norelativenumber
-    autocmd FileType fern setlocal nonumber
 augroup END
 
 " Markdown Preview settings
