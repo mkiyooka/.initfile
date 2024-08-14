@@ -113,7 +113,7 @@ function! s:rust_vim_settings() abort
 endfunction
 
 augroup rust-vim-settings
-    autocmd! *
+    autocmd!
     autocmd FileType rust call s:rust_vim_settings()
 augroup END
 
@@ -127,7 +127,7 @@ function! s:quickrun_settings() abort
 endfunction END
 
 augroup quickrun-settings
-    autocmd! *
+    autocmd!
     autocmd FileType quickrun s:quickrun_settings()
 augroup END
 
@@ -139,7 +139,7 @@ function! s:quickfix_settings() abort
 endfunction
 
 augroup quickfix-settings
-    autocmd! *
+    autocmd!
     autocmd FileType qf s:quickfix_settings()
 augroup END
 
@@ -158,7 +158,7 @@ function! s:fern_settings() abort
 endfunction
 
 augroup fern-settings
-    autocmd! *
+    autocmd!
     autocmd FileType fern call s:fern_settings()
 augroup END
 
@@ -203,7 +203,7 @@ if has('nvim') || v:version >= 810
 
     command MarkdownPreviewScrollToggle call s:markdown_preview_scroll_toggle()
     augroup mkdp-settings
-        autocmd! *
+        autocmd!
         autocmd FileType markdown nnoremap <Leader>s call s:markdown_preview_scroll_toggle()
     augroup END
 endif
