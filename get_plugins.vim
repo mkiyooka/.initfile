@@ -62,9 +62,8 @@ if filereadable(s:plug)
     Plug 'mattn/emmet-vim', { 'for': ['html'] }
     Plug 'tpope/vim-markdown', {'for': ['markdown'] }
     Plug 'mzlogin/vim-markdown-toc', { 'for': ['markdown'] }
-    Plug 'previm/previm', {'for': ['markdown'] }
     Plug 'mattn/vim-maketable' "Make markdown table
-    if has('nvim')
+    if has('nvim') || v:version >= 810
         Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     endif
     Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
@@ -111,3 +110,4 @@ if exists('g:plug_home')
         let g:colorscheme = 'tender'
     endif
 endif
+
