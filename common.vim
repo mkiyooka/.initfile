@@ -73,7 +73,6 @@ set conceallevel=0
 set concealcursor=n
 set cursorline
 set cursorlineopt=both
-set cursorbind
 
 "-------------------------------------------------------------------------------
 "Change cursor color with IME mode.
