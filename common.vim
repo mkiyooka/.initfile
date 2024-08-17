@@ -46,8 +46,6 @@ set foldmethod=syntax
 set backspace=indent,eol,start
 set ambiwidth=double    "For CJK fonts.
 set showmatch matchtime=1 "Tenth of a second to show the matching paren.
-
-set clipboard+=unnamed  "Use clipboard as unnamed register
 set hidden              "Disable alert with change from unsaved buffer.
 set formatoptions+=mMj
 set virtualedit+=block  "Free cursor on visual block mode
@@ -73,6 +71,22 @@ set conceallevel=0
 set concealcursor=n
 set cursorline
 set cursorlineopt=both
+
+set clipboard+=unnamed  "Use clipboard as unnamed register
+if g:os == 'windows' && executable('win32yank.exe')
+    let g:clipboard = {
+                \   'name': 'myClipboard',
+                \   'copy': {
+                \      '+': 'win32yank.exe -i',
+                \      '*': 'win32yank.exe -i',
+                \    },
+                \   'paste': {
+                \      '+': 'win32yank.exe -o',
+                \      '*': 'win32yank.exe -o',
+                \   },
+                \   'cache_enabled': 1,
+                \ }
+endif
 
 "-------------------------------------------------------------------------------
 "Change cursor color with IME mode.
