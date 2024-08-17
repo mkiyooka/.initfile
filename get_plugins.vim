@@ -28,54 +28,53 @@ if filereadable(s:plug)
     Plug 'nathanaelkane/vim-indent-guides'
     Plug 'itchyny/lightline.vim'
 
-    " Common
-    Plug 'airblade/vim-gitgutter'
+    " File handling
+    Plug 'lambdalisue/fern.vim'
+    Plug 'lambdalisue/fern-hijack.vim'
+    Plug 'lambdalisue/fern-bookmark.vim'
+    Plug 'lambdalisue/fern-git-status.vim'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'mattn/ctrlp-matchfuzzy'
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/vim-easy-align'
-    Plug 'ctrlpvim/ctrlp.vim'
-    "Plug 'mattn/ctrlp-matchfuzzy'
-    "let g:ctrlp_match_func = {'match': 'ctrlp_matchfuzzy#matcher'}
+
+    Plug 'airblade/vim-gitgutter'
 
     " This plugin highlights patterns and ranges for Ex commands
     Plug 'markonm/traces.vim'
     " Help using tags. vim >= 7.3.1058, Exuberant Ctags >= 5.5
     Plug 'preservim/tagbar'
-    Plug 'scrooloose/nerdtree'
     Plug 'skanehira/translate.vim'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-surround'
     Plug 'yegappan/mru'
     Plug 'vim-scripts/sudo.vim'
-    Plug 'lambdalisue/fern.vim'
-    Plug 'lambdalisue/fern-hijack.vim'
-    Plug 'lambdalisue/fern-bookmark.vim'
-    Plug 'lambdalisue/fern-git-status.vim'
     Plug 'yuki-yano/fern-preview.vim'
     Plug 'kana/vim-operator-user'
 
-    " For specific languages
+    " For Languages
+    " complex syntax analysis for highlight
+    if has('nvim')
+        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    endif
     " Language support plugin assortment
+    Plug 'editorconfig/editorconfig-vim'
     Plug 'sheerun/vim-polyglot'
     Plug 'ekalinin/Dockerfile.vim', { 'for': ['Dockerfile', 'Containerfile'] }
     Plug 'mattn/emmet-vim', { 'for': ['html'] }
-    Plug 'tpope/vim-markdown', {'for': ['markdown'] }
     Plug 'mzlogin/vim-markdown-toc', { 'for': ['markdown'] }
     Plug 'mattn/vim-maketable' "Make markdown table
     if has('nvim') || v:version >= 810
         Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     endif
-    Plug 'chr4/nginx.vim', { 'for': ['nginx'] }
-    Plug 'cespare/vim-toml', { 'for': ['toml'] }
     Plug 'lervag/wiki.vim'
 
     " --- Programming support ---
     " Help maintain consistent coding styles
     Plug 'thinca/vim-quickrun'
-    Plug 'editorconfig/editorconfig-vim'
     " Lint/Format
-    " Plug 'w0rp/ale' "Asynchronous Lint Engine
     Plug 'prabirshrestha/vim-lsp'
     Plug 'mattn/vim-lsp-settings'
     Plug 'piec/vim-lsp-clangd'
