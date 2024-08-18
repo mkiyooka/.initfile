@@ -76,6 +76,8 @@ if filereadable(s:plug)
     Plug 'thinca/vim-quickrun'
     " Lint/Format
     Plug 'prabirshrestha/vim-lsp'
+    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'
     Plug 'mattn/vim-lsp-settings'
     Plug 'piec/vim-lsp-clangd'
     Plug 'rust-lang/rust.vim'
