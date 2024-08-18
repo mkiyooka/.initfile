@@ -15,11 +15,25 @@ for BASE in \
     ln -fsv $PWD/$BASE ~/.$BASE
 done
 
+mkdir -p $HOME/.ssh
+
 ln -fsv $HOME/.initfile/vimrc  $HOME/.config/nvim/init.vim
 ln -fsv $HOME/.initfile/gvimrc $HOME/.config/nvim/ginit.vim
 
-mkdir -p $HOME/.local/share/nvim/site/autoload
-ln -fsv $HOME/.vim/autoload/plug.vim $HOME/.local/share/nvim/site/autoload/plug.vim
+case "${OSTYPE}" in
+    darwin*)
+        mkdir -p $HOME/.local/share/nvim/site/autoload
+        ln -fsv $HOME/.vim/autoload/plug.vim $HOME/.local/share/nvim/site/autoload/plug.vim
+        ;;
+    linux*)
+        mkdir -p $HOME/.local/share/nvim/site/autoload
+        ln -fsv $HOME/.vim/autoload/plug.vim $HOME/.local/share/nvim/site/autoload/plug.vim
+        ;;
+    msys*)
+        mkdir -p $HOME/.local/share/nvim-data/site/autoload
+        ln -fsv $HOME/.vim/autoload/plug.vim $HOME/.local/share/nvim-data/site/autoload/plug.vim
+        ;;
+esac
 
 mkdir -p ~/doc/wiki
 vim -c PlugInstall -c q -c q

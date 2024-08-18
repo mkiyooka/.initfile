@@ -13,9 +13,10 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # XDG Base Directory
 export XDG_CONFIG_HOME=$HOME/.config
-export XDG_DATA_HOME=$HOME/.data
 export XDG_CACHE_HOME=$HOME/.cache
-export XDG_RUNTIME_HOME=$HOME/.runtime
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_RUNTIME_HOME=$HOME/.local/run
 # bash complettion ssh
 function _compreply_ssh() {
     COMPREPLY=(`cat ~/.ssh/config* | grep -e '^Host' | cut -d " " -f 2 | grep -E "$2"`)
