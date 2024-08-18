@@ -100,6 +100,13 @@ let g:indent_guides_auto_colors = 1
 let g:indent_guides_color_change_percent = 4
 let g:indent_guides_exclude_filetypes = ['help', 'markdown']
 
+" ----- for asyncomplete.vim ----
+let g:asyncomplete_auto_popup = 0
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+let g:asyncomplete_auto_completeopt = 0
+
+set completeopt=menuone,noinsert,noselect,preview
+
 " ----- for lsp-vim -----
 let g:lsp_settings = { 'clangd': { 'cmd': ['clangd', '--enable-config', '--clang-tidy'] } }
 
