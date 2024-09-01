@@ -77,12 +77,12 @@ if g:os == 'windows' && executable('win32yank.exe')
     let g:clipboard = {
                 \   'name': 'myClipboard',
                 \   'copy': {
-                \      '+': 'win32yank.exe -i',
-                \      '*': 'win32yank.exe -i',
+                \      '+': 'win32yank.exe -i --crlf',
+                \      '*': 'win32yank.exe -i --crlf',
                 \    },
                 \   'paste': {
-                \      '+': 'win32yank.exe -o',
-                \      '*': 'win32yank.exe -o',
+                \      '+': 'win32yank.exe -o --lf',
+                \      '*': 'win32yank.exe -o --lf',
                 \   },
                 \   'cache_enabled': 1,
                 \ }

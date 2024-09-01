@@ -1,6 +1,6 @@
 if has('nvim')
     if has('win32') || has('win64')
-        let s:plug_install_dir = '$HOME/.local/share/nvim-data/site'
+        let s:plug_install_dir = '$HOME/.local/share/nvim/site'
     else
         let s:plug_install_dir = '$HOME/.local/share/nvim/site'
     endif

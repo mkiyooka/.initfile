@@ -23,3 +23,15 @@ mklink   %HOME%\.gitignore      %HOME%\.initfile\ctags
 
 mkdir -p ~/doc/wiki
 vim -c PlugInstall -c q -c q
+
+mklink %HOME%\.gitignore      %HOME%\.initfile\ctags
+
+rem clangd setting
+mkdir %HOME%\.config\clangd
+mklink %HOME%\.config\clangd\config.yaml $PWD\clangd_config.yaml
+
+rem XDG_CONFIG_HOME  $HOME/.config
+rem XDG_CACHE_HOME   $HOME/.cache
+rem XDG_DATA_HOME    $HOME/.local/share
+rem XDG_STATE_HOME   $HOME/.local/state
+rem XDG_RUNTIME_HOME $HOME/.local/run
