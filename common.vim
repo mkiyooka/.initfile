@@ -155,3 +155,8 @@ fu s:MySort(i, j) abort
     let s2 = split(a:j, '|')[3]
     return s1 ==# s2 ? 0 : s1 ># s2 ? 1 : -1
 endfu
+
+augroup markdown-setting
+    autocmd!
+    autocmd FileType markdown set shiftwidth=4
+augroup END

@@ -64,12 +64,16 @@ let g:wiki_month_names = [
 "            \ }
 let g:wiki_tag_scan_num_lines = 3
 
-"augroup Wiki
-"    autocmd!
-"    autocmd BufNewFile,BufRead *.{md,mkd} set filetype=markdown
-"    "autocmd BufNewFile,BufRead *.{md,mkd} nmap <leader><CR> <Plug>(wiki-link-open)
-"augroup END
-"
+
+function! s:wiki_setting() abort
+    nnoremap  <Leader><CR>  <plug>(wiki-link-follow)
+endfunction
+
+augroup Wiki-setting
+    autocmd!
+    autocmd FileType markdown call s:wiki_setting()
+augroup END
+ 
 " ----- for mru.vim -----
 let MRU_File = expand('$HOME/.vim_mru_files')
 let MRU_Max_Entries = 1000

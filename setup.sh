@@ -17,8 +17,10 @@ done
 
 mkdir -p $HOME/.ssh
 
-ln -fsv $HOME/.initfile/vimrc  $HOME/.config/nvim/init.vim
-ln -fsv $HOME/.initfile/gvimrc $HOME/.config/nvim/ginit.vim
+mkdir -p $HOME/.config/{nvim,goneovim}
+ln -fsv $HOME/.initfile/vimrc         $HOME/.config/nvim/init.vim
+ln -fsv $HOME/.initfile/gvimrc        $HOME/.config/nvim/ginit.vim
+ln -fsv $HOME/.initfile/settings.toml $HOME/.config/goneovim/settings.toml
 
 mkdir -p $HOME/.local/share/nvim/site/autoload
 ln -fsv $HOME/.vim/autoload/plug.vim $HOME/.local/share/nvim/site/autoload/plug.vim
@@ -27,4 +29,5 @@ mkdir -p ~/doc/wiki
 vim -c PlugInstall -c q -c q
 
 # clangd setting
+mkdir -p $HOME/.config/clangd
 ln -fsv $PWD/clangd_config.yaml $HOME/.config/clangd/config.yaml
