@@ -17,9 +17,10 @@ done
 
 mkdir -p $HOME/.ssh
 
-mkdir -p $HOME/.config/{nvim,goneovim}
+mkdir -p $HOME/.config/nvim
 ln -fsv $HOME/.initfile/vimrc         $HOME/.config/nvim/init.vim
 ln -fsv $HOME/.initfile/gvimrc        $HOME/.config/nvim/ginit.vim
+mkdir -p $HOME/.config/goneovim
 ln -fsv $HOME/.initfile/settings.toml $HOME/.config/goneovim/settings.toml
 
 mkdir -p $HOME/.local/share/nvim/site/autoload
