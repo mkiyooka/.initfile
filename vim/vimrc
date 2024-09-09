@@ -1,0 +1,6 @@
+let s:base_dir = '$HOME/.initfile/vim/'
+let s:vimrc_entrypoint = expand(s:base_dir . 'vimrc_entrypoint.vim')
+if filereadable(s:vimrc_entrypoint)
+  execute 'source' s:vimrc_entrypoint
+endif
+
