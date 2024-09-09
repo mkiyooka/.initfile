@@ -1,17 +1,17 @@
 if has('nvim')
     if has('win32') || has('win64')
-        let s:plug_install_dir = '$HOME/.local/share/nvim/site'
+        let s:plug_install_dir = '$HOME/.local/share/nvim/site/'
     else
-        let s:plug_install_dir = '$HOME/.local/share/nvim/site'
+        let s:plug_install_dir = '$HOME/.local/share/nvim/site/'
     endif
 else
     if has('win32') || has('win64')
-        let s:plug_install_dir = '$HOME/.vim'
+        let s:plug_install_dir = '$HOME/.vim/'
     else
-        let s:plug_install_dir = '$HOME/.vim'
+        let s:plug_install_dir = '$HOME/.vim/'
     endif
 endif
-let s:plug = expand(s:plug_install_dir . '/autoload/plug.vim')
+let s:plug = expand(s:plug_install_dir . 'autoload/plug.vim')
 
 if filereadable(s:plug)
     call plug#begin()
