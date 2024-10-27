@@ -17,7 +17,7 @@ if filereadable(s:rc_mapping)
 endif
 
 let s:rc_terminal = expand(s:base_dir . 'terminal_setting.vim')
-if filereadable(s:rc_terminal)
+if has('terminal') && filereadable(s:rc_terminal)
     execute 'source' s:rc_terminal
 endif
 

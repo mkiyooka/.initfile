@@ -19,20 +19,25 @@ if filereadable(s:plug)
     Plug 'dracula/vim', {'as':'dracula'}
     Plug 'jacoborus/tender.vim'
     Plug 'mkiyooka/molokai'
-    if has('nvim')
+    if has('nvim-0.4')
         Plug 'EdenEast/nightfox.nvim'
     endif
 
     " Appearance of vim
     " Status line styler
-    Plug 'nathanaelkane/vim-indent-guides'
+    if has('nvim') || v:version >= 810
+        Plug 'nathanaelkane/vim-indent-guides'
+    endif
     Plug 'itchyny/lightline.vim'
 
     " File handling
-    Plug 'lambdalisue/fern.vim'
-    Plug 'lambdalisue/fern-hijack.vim'
-    Plug 'lambdalisue/fern-bookmark.vim'
-    Plug 'lambdalisue/fern-git-status.vim'
+    if has('nvim-0.4.4') || v:version >= 820
+        Plug 'lambdalisue/fern.vim'
+        Plug 'lambdalisue/fern-hijack.vim'
+        Plug 'lambdalisue/fern-bookmark.vim'
+        Plug 'lambdalisue/fern-git-status.vim'
+        Plug 'yuki-yano/fern-preview.vim'
+    endif
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'mattn/ctrlp-matchfuzzy'
     Plug 'junegunn/fzf'
@@ -51,7 +56,6 @@ if filereadable(s:plug)
     Plug 'tpope/vim-surround'
     Plug 'yegappan/mru'
     Plug 'vim-scripts/sudo.vim'
-    Plug 'yuki-yano/fern-preview.vim'
     Plug 'kana/vim-operator-user'
 
     " For Languages
@@ -69,15 +73,19 @@ if filereadable(s:plug)
     if has('nvim') || v:version >= 810
         Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
     endif
-    Plug 'lervag/wiki.vim'
+    if has('nvim-0.4') || v:version >= 810
+        Plug 'lervag/wiki.vim'
+    endif
 
     " --- Programming support ---
     " Help maintain consistent coding styles
     Plug 'thinca/vim-quickrun'
     " Lint/Format
-    Plug 'prabirshrestha/vim-lsp'
-    Plug 'prabirshrestha/asyncomplete.vim'
-    Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    if has('nvim-0.4') || v:version >= 810
+        Plug 'prabirshrestha/vim-lsp'
+        Plug 'prabirshrestha/asyncomplete.vim'
+        Plug 'prabirshrestha/asyncomplete-lsp.vim'
+    endif
     Plug 'mattn/vim-lsp-settings'
     Plug 'piec/vim-lsp-clangd'
     Plug 'rust-lang/rust.vim'
