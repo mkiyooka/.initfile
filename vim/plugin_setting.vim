@@ -32,47 +32,49 @@ let g:vmt_fence_text = 'TOC'
 let g:vmt_fence_closing_text = '/TOC'
 
 " ----- for wiki.vim -----
-function! WikiRoot() abort
-    let l:wiki_local_root = finddir('doc', ';./')
-    let l:wiki_global_root = expand('~/GoogleGrive/doc/wiki')
-    if !empty(l:wiki_local_root)
-        return l:wiki_local_root
-    elseif isdirectory(l:wiki_global_root)
-        return l:wiki_global_root
-    else
-        return '~/doc/wiki' " wiki default
-    end
-endfunction
+if has('nvim') || v:version >= 810
+    function! WikiRoot() abort
+        let l:wiki_local_root = finddir('doc', ';./')
+        let l:wiki_global_root = expand('~/GoogleGrive/doc/wiki')
+        if !empty(l:wiki_local_root)
+            return l:wiki_local_root
+        elseif isdirectory(l:wiki_global_root)
+            return l:wiki_global_root
+        else
+            return '~/doc/wiki' " wiki default
+        end
+    endfunction
 
-let g:wiki_root = 'WikiRoot'
+    let g:wiki_root = 'WikiRoot'
 
-let g:wiki_link_extension = '.md'
-let g:wiki_link_target_type = 'md' "create markdown type link
-let g:wiki_filetypes = ['md', 'adoc', 'wiki']
-let g:wiki_month_names = [
-            \ '1 January', '2 February', '3 March', '4 April',
-            \ '5 May', '6 June', '7 July', '8 August',
-            \ '9 September', '10 October', '11 November', '12 December']
-"let g:wiki_journal = {
-"            \ 'name': 'journal',
-"            \ 'frequency': 'daily',
-"            \ 'date_format': {
-"            \   'daily': '%Y-%m-%d',
-"            \   'weekly': '%Y-w%V',
-"            \   'monthly': '%Y-m%m',
-"            \ },
-"            \ }
-let g:wiki_tag_scan_num_lines = 3
+    let g:wiki_link_extension = '.md'
+    let g:wiki_link_target_type = 'md' "create markdown type link
+    let g:wiki_filetypes = ['md', 'adoc', 'wiki']
+    let g:wiki_month_names = [
+                \ '1 January', '2 February', '3 March', '4 April',
+                \ '5 May', '6 June', '7 July', '8 August',
+                \ '9 September', '10 October', '11 November', '12 December']
+    "let g:wiki_journal = {
+    "            \ 'name': 'journal',
+    "            \ 'frequency': 'daily',
+    "            \ 'date_format': {
+    "            \   'daily': '%Y-%m-%d',
+    "            \   'weekly': '%Y-w%V',
+    "            \   'monthly': '%Y-m%m',
+    "            \ },
+    "            \ }
+    let g:wiki_tag_scan_num_lines = 3
 
 
-function! s:wiki_setting() abort
-    nnoremap  <Leader><CR>  <plug>(wiki-link-follow)
-endfunction
+    function! s:wiki_setting() abort
+        nnoremap  <Leader><CR>  <plug>(wiki-link-follow)
+    endfunction
 
-augroup Wiki-setting
-    autocmd!
-    autocmd FileType markdown call s:wiki_setting()
-augroup END
+    augroup Wiki-setting
+        autocmd!
+        autocmd FileType markdown call s:wiki_setting()
+    augroup END
+endif
  
 " ----- for mru.vim -----
 let MRU_File = expand('$HOME/.vim_mru_files')
@@ -92,11 +94,13 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v([\/]\.(git|hg|svn)|[\/]target)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
+if has('nvi') || v:version >= 810
+    let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\v([\/]\.(git|hg|svn)|[\/]target)$',
+      \ 'file': '\v\.(exe|so|dll)$',
+      \ 'link': 'some_bad_symbolic_links',
+      \ }
+endif
 
 " ----- for vim-indent-guides -----
 let g:indent_guides_enable_on_vim_startup = 1
@@ -109,9 +113,13 @@ let g:asyncomplete_auto_popup = 0
 imap <c-space> <Plug>(asyncomplete_force_refresh)
 let g:asyncomplete_auto_completeopt = 0
 
-set completeopt=menuone,noinsert,noselect,preview
+if exists('+cursorlineopt')
+    set completeopt=menuone,noinsert,noselect,preview
+endif
 
 " ----- for lsp-vim -----
+let g:lsp_clangd_ignore_warning = 1
+
 let g:lsp_settings = { 'clangd': { 'cmd': ['clangd', '--enable-config', '--clang-tidy'] } }
 
 if executable('clangd')
@@ -175,23 +183,25 @@ augroup quickfix-settings
 augroup END
 
 " ----- for fern -----
-nnoremap <leader>f :<c-u>Fern %:h -reveal=% -drawer -toggle<CR>
-nnoremap <leader>F :<c-u>Fern . -reveal=% -drawer -toggle<CR>
+if has('nvim') || v:version >= 820
+    nnoremap <leader>f :<c-u>Fern %:h -reveal=% -drawer -toggle<CR>
+    nnoremap <leader>F :<c-u>Fern . -reveal=% -drawer -toggle<CR>
 
-function! s:fern_settings() abort
-    nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
-    nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
-    nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
-    nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
-    nnoremap      <buffer> q     :<c-u>quit<cr>
-    setlocal norelativenumber
-    setlocal nonumber
-endfunction
+    function! s:fern_settings() abort
+        nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+        nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+        nmap <silent> <buffer> <C-d> <Plug>(fern-action-preview:scroll:down:half)
+        nmap <silent> <buffer> <C-u> <Plug>(fern-action-preview:scroll:up:half)
+        nnoremap      <buffer> q     :<c-u>quit<cr>
+        setlocal norelativenumber
+        setlocal nonumber
+    endfunction
 
-augroup fern-settings
-    autocmd!
-    autocmd FileType fern call s:fern_settings()
-augroup END
+    augroup fern-settings
+        autocmd!
+        autocmd FileType fern call s:fern_settings()
+    augroup END
+endif
 
 " Markdown Preview settings
 if has('nvim') || v:version >= 810

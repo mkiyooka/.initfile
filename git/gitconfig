@@ -1,7 +1,4 @@
 # vim: ft=gitconfig
-[user]
-	name = Masahiro KIYOOKA
-	email = kiyookamasa@gmail.com
 [credential]
 	helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
 [filter "lfs"]

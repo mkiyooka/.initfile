@@ -70,7 +70,9 @@ set fileencodings=utf-8,iso-2022-jp,euc-jp,cp932
 set conceallevel=0
 set concealcursor=n
 set cursorline
-set cursorlineopt=both
+if exists('+cursorlineopt')
+    set cursorlineopt=both
+endif
 
 set clipboard+=unnamed  "Use clipboard as unnamed register
 if g:os == 'windows' && executable('win32yank.exe')
